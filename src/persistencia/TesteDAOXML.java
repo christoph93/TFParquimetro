@@ -6,6 +6,7 @@
 package persistencia;
 
 import java.sql.SQLException;
+import negocio.Cartao;
 import negocio.Parquimetro;
 import negocio.Ticket;
 
@@ -16,16 +17,13 @@ import negocio.Ticket;
 public class TesteDAOXML {
     public static void main(String[] args) throws ParquimetroDAOException, SQLException, ticketDAOException {
         
-        TicketDAOXML td = new TicketDAOXML();
-        ParquimetroDAOXML pd = new ParquimetroDAOXML();
-                
+        CartaoDAOXML dao = new CartaoDAOXML();
         
-        Parquimetro p = new Parquimetro(pd.getEndereco(), pd.getCodigo(), pd.getHoraInicio(), pd.getHoraFinal(), pd.getTempoMinimo(), pd.getTempoMaximo(), pd.getIncremento(), pd.getValorIncremento());
+        Cartao c = new Cartao("cartao1", 12.4, "RESIDENTE");
         
-                
-        Ticket t = new Ticket(p, p.getEnder(), 12.5, p.getHoraInicio(), p.getIncremento());
+        System.out.println(dao.getCartao("123456789").toString());
         
-        td.adicionar(t);
+        dao.addcartao(c);
         
     }
     

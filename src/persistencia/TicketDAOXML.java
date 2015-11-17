@@ -26,8 +26,7 @@ public class TicketDAOXML implements ticketDAO {
     private Document doc;
 
     public TicketDAOXML() {
-        root = new Element("tickets");
-        doc = new Document(root);
+        
     }
 
     @Override

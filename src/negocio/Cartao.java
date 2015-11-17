@@ -17,13 +17,13 @@ public class Cartao {
  
     StringBuilder sb = new StringBuilder();
     
-    private final String codigo;
+    private String codigo;
     private double saldo;
-    private final String tipo;
+    private String tipo;
     
     
-    public Cartao(double saldo, String t){
-        codigo = geraCodigo();
+    public Cartao(String codigo, double saldo, String t){
+        this.codigo = codigo;
         this.saldo = saldo;
         tipo = t;
     }

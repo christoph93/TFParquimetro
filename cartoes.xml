@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<cartoes>
+	<cartao codigo="123456789">
+		<saldo>15.50</saldo>
+		<tipo>PREPAGO</tipo>
+	</cartao>
+		<cartao codigo="55555555">
+		<saldo>12.50</saldo>
+		<tipo>PREPAGO</tipo>
+	</cartao>
+		<cartao codigo="999999999">
+		<saldo>110.00</saldo>
+		<tipo>PREPAGO</tipo>
+	</cartao>
+		</cartoes>

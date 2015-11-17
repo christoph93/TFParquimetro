@@ -21,7 +21,7 @@ import persistencia.ParquimetroDAOException;
  *
  * @author ccalifi
  */
-public class TesteConfiguração {
+public class TesteConfiguracao {
     
     public static void main(String[] args) throws IOException, FileNotFoundException, ParquimetroDAOException {
         

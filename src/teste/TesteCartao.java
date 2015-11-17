@@ -17,7 +17,7 @@ import negocio.Cartao;
 public class TesteCartao {
     
     public static void main(String[] args) {
-        Cartao c = new Cartao(130.00, "PREPAGO");
+        Cartao c = new Cartao("codigo12313", 130.00, "PREPAGO");
         System.out.println(c.toString());
     }
     
