@@ -5,8 +5,7 @@
  */
 package persistencia;
 
-import java.sql.Time;
-import negocio.Endereco;
+import negocio.Parquimetro;
 
 /**
  *
@@ -14,20 +13,7 @@ import negocio.Endereco;
  */
 public interface ParquimetroDAO {
 
-    public int getCodigo();
+    public Parquimetro getParquimetro();
 
-    public double getValorIncremento();
-
-    public Endereco getEndereco();
-
-    public Time getHoraInicio();
-
-    public Time getHoraFinal();
-
-    public Time getTempoMinimo();
-
-    public Time getTempoMaximo();
-
-    public Time getIncremento();
 
 }

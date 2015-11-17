@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.util.List;
 import negocio.Endereco;
+import negocio.Parquimetro;
 import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -23,8 +24,9 @@ import org.jdom2.input.SAXBuilder;
  */
 public class ParquimetroDAOXML implements ParquimetroDAO {
 
-    private String codigo, rua, cidade, estado, pais, hInicio, hFinal, tMin, tMax, tIncr;
-    private int numero;
+    private String rua, cidade, estado, pais;
+    private Time hInicio, hFinal, tMin, tMax, tIncr;
+    private int numero, codigo;
     private double vIncr;
     private File inputFile;
     private SAXBuilder saxBuilder;
@@ -46,18 +48,18 @@ public class ParquimetroDAOXML implements ParquimetroDAO {
 
              for (Element parquimetro : listaParq) {
                 Attribute attribute = parquimetro.getAttribute("codigo");
-                codigo = attribute.getValue();
+                codigo = Integer.parseInt(attribute.getValue());
                 rua = parquimetro.getChild("rua").getText();
                 cidade = parquimetro.getChild("cidade").getText();
                 estado = parquimetro.getChild("estado").getText();
                 pais = parquimetro.getChild("pais").getText();
                 numero = Integer.parseInt(parquimetro.getChild("numero").getText());
 
-                hInicio = parquimetro.getChild("horaInicio").getText();
-                hFinal = parquimetro.getChild("horaFinal").getText();
-                tMin = parquimetro.getChild("tempoMin").getText();
-                tMax = parquimetro.getChild("tempoMax").getText();
-                tIncr = parquimetro.getChild("incremento").getText();
+                hInicio = Time.valueOf(parquimetro.getChild("horaInicio").getText());
+                hFinal = Time.valueOf(parquimetro.getChild("horaFinal").getText());
+                tMin = Time.valueOf(parquimetro.getChild("tempoMin").getText());
+                tMax = Time.valueOf(parquimetro.getChild("tempoMax").getText());
+                tIncr = Time.valueOf(parquimetro.getChild("incremento").getText());
                 vIncr = Double.parseDouble(parquimetro.getChild("valorIncremento").getText());
             }
         } catch (JDOMException | IOException e) {
@@ -65,44 +67,10 @@ public class ParquimetroDAOXML implements ParquimetroDAO {
     }
 
     @Override
-    public int getCodigo() {
-        return Integer.parseInt(codigo);
+    public Parquimetro getParquimetro() {
+        Endereco e = new Endereco(rua, numero, cidade, estado, pais);
+        Parquimetro p = new Parquimetro(e, this.codigo, hInicio, hFinal, tMin, tMax, tIncr, vIncr);
+        
+        return p;
     }
- 
-
-    @Override
-    public Endereco getEndereco() {
-        return new Endereco(rua, numero, cidade, estado, pais);
-    }
-
-    @Override
-    public Time getHoraInicio() {
-        return Time.valueOf(hInicio);
-    }
-
-    @Override
-    public Time getHoraFinal() {
-        return Time.valueOf(hFinal);
-    }
-
-    @Override
-    public Time getTempoMinimo() {
-        return Time.valueOf(tMin);
-    }
-
-    @Override
-    public Time getTempoMaximo() {
-        return Time.valueOf(tMax);
-    }
-
-    @Override
-    public Time getIncremento() {
-        return Time.valueOf(tIncr);
-    }
-
-    @Override
-    public double getValorIncremento() {
-        return vIncr;
-    }
-
 }

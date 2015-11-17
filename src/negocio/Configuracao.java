@@ -8,7 +8,6 @@ package negocio;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.sql.Time;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import persistencia.ParquimetroDAO;
@@ -32,10 +31,9 @@ public class Configuracao {
             Logger.getLogger(Configuracao.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        e = dao.getEndereco();
+        e = dao.getParquimetro().getEnder();
         
-        p = new Parquimetro(e, dao.getCodigo(), dao.getHoraInicio(), dao.getHoraFinal(),
-                dao.getTempoMinimo(), dao.getTempoMaximo(), dao.getIncremento(), dao.getValorIncremento());
+        p = dao.getParquimetro();
 
         
     }

@@ -5,6 +5,7 @@
  */
 package persistencia;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -80,7 +81,7 @@ public class TicketDAOXML implements ticketDAO {
          // display xml
          xmlOutput.setFormat(Format.getPrettyFormat());
         try { 
-            xmlOutput.output(doc, System.out);
+            xmlOutput.output(doc, new FileOutputStream("tickets.xml"));
         } catch (IOException ex) {
             Logger.getLogger(TicketDAOXML.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -10,4 +10,14 @@
       <estado>Estado e</estado>
       <pais>Pais p</pais>
    </ticket>
+      <ticket codigo="66666">
+      <parquimetro>12345</parquimetro>
+      <emissao>08:30:00</emissao>
+      <validade>08:35:00</validade>
+      <rua>Rua R</rua>
+      <numero>123</numero>
+      <cidade>Cidade c</cidade>
+      <estado>Estado e</estado>
+      <pais>Pais p</pais>
+   </ticket>
 </tickets>
