@@ -23,16 +23,16 @@ public class Ticket {
     
     private final Parquimetro parq;
     private final Endereco endereco;
-    private final int numero;
+    private final int codigo;
     private final Time emissao;
     private final Time validade;
     private final double valor;
     
-    public Ticket(Parquimetro par, Endereco end, double valor, Time emiss, Time val){
+    public Ticket(Parquimetro par, Endereco end,int codigo, double valor, Time emiss, Time val){
         this.valor = valor;
         parq = par;
         endereco = end;
-        numero = geraCodigo();
+        this.codigo = codigo;
         emissao = emiss;
         validade = val;                
     }
@@ -57,7 +57,7 @@ public class Ticket {
     }
 
     public int getNumero() {
-        return numero;
+        return codigo;
     }
 
     public Time getEmissao() {
@@ -70,7 +70,7 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return "Ticket{" + "parq=" + parq + ", endereco=" + endereco + ", numero=" + numero + ", emissao=" + emissao + ", validade=" + validade + ", valor=" + valor + '}';
+        return "Ticket{" + "parq=" + parq + ", endereco=" + endereco + ", codigo=" + codigo + ", emissao=" + emissao + ", validade=" + validade + ", valor=" + valor + '}';
     }
 
     

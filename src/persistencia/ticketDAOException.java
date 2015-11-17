@@ -9,6 +9,6 @@ package persistencia;
  *
  * @author lcaltab
  */
-class ticketDAOException extends Exception {
+public class ticketDAOException extends Exception {
     
 }

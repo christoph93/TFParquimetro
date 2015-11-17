@@ -20,26 +20,13 @@ import persistencia.ParquimetroDAOException;
  */
 public class Configuracao {
 
-    private Parquimetro p;
-    private Endereco e;
-    ParquimetroDAO dao;
-
+    private ParquimetroDAOXML dao;
+    
     public Configuracao() throws FileNotFoundException, IOException, ParquimetroDAOException {
-        try {
-            this.dao = new ParquimetroDAOXML();
-        } catch (SQLException ex) {
-            Logger.getLogger(Configuracao.class.getName()).log(Level.SEVERE, null, ex);
+        
+        Parquimetro p = dao.getParquimetro();      
+        
+        
         }
-
-        e = dao.getParquimetro().getEnder();
-        
-        p = dao.getParquimetro();
-
-        
-    }
-
-    public Parquimetro getParquimetro() {
-        return p;
-    }
 
 }
