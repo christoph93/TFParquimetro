@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<parq>
+<parquimetro codigo="55555">
+	<rua>RuaR</rua>
+	<numero>123123</numero>
+	<cidade>Cidade C </cidade>
+	<estado>Estado E </estado>
+	<pais>Pais P</pais>
+	<horaInicio>08:30:00</horaInicio>
+	<horaFinal>18:30:00</horaFinal>
+	<tempoMin>00:30:00</tempoMin>
+	<tempoMax>02:00:00</tempoMax>
+	<incremento>00:10:00</incremento>
+	<valorIncremento>0.25</valorIncremento>
+</parquimetro>
+</parq>

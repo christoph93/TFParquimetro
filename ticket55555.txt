@@ -1,0 +1,5 @@
+Ticket número 55555
+Endereço do parquímetro: Rua ABC, 123 - Cidade C, Estado C, Pais P
+Número do parquímetro: 12345
+Tíquete emitido em 2015-03-13 11:35:25.0
+Tíquete válido até 2015-03-13 11:35:25.0
