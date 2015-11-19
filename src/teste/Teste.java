@@ -7,9 +7,11 @@ package teste;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import negocio.Cartao;
 import negocio.Parquimetro;
 import negocio.Ticket;
 import org.jdom2.JDOMException;
+import persistencia.CartaoDAOXML;
 import persistencia.ParquimetroDAOException;
 import persistencia.ParquimetroDAOXML;
 import persistencia.TicketDAOXML;
@@ -33,9 +35,18 @@ public class Teste {
          //leitura do tickets.xml
          TicketDAOXML daoT = new TicketDAOXML();         
          
-         for (Ticket t : daoT.getTickets()){
-             System.out.println(t.toString());
+         
+         CartaoDAOXML daoC = new CartaoDAOXML();        
+         
+         
+         daoC.addcartao(daoC.getCartao("123456789"));
+         
+         for (Cartao c : daoC.getCartoes()){
+             System.out.println(c.toString());
          }
+         
+         
+         
          
          
          

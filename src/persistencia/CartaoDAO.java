@@ -5,6 +5,7 @@
  */
 package persistencia;
 
+import java.util.List;
 import negocio.Cartao;
 
 /**
@@ -18,6 +19,8 @@ public interface CartaoDAO {
     public void addcartao(Cartao cart);
     
     public boolean  setSaldo(String codigoCartao, double valor);
+    
+    public List<Cartao> getCartoes();
     
     
 }

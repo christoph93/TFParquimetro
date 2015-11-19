@@ -6,14 +6,20 @@
 package persistencia;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import negocio.Cartao;
 import org.jdom2.Attribute;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 
 /**
  *
@@ -39,7 +45,7 @@ public class CartaoDAOXML implements CartaoDAO {
             root = document.getRootElement();
 
             listaCartoes = root.getChildren();
-            
+
         } catch (JDOMException | IOException e) {
         }
 
@@ -81,6 +87,16 @@ public class CartaoDAOXML implements CartaoDAO {
 
         root.addContent(elemCartao);
 
+        XMLOutputter xmlOutput = new XMLOutputter();
+
+        xmlOutput.setFormat(Format.getPrettyFormat());
+
+        try {
+            xmlOutput.output(document, new FileWriter("cartoes.xml"));
+        } catch (IOException ex) {
+            Logger.getLogger(TicketDAOXML.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
     }
 
     @Override
@@ -92,6 +108,22 @@ public class CartaoDAOXML implements CartaoDAO {
             }
         }
         return false;
+    }
+
+    @Override
+    public List<Cartao> getCartoes() {
+        List<Cartao> cartoes = new ArrayList<>();
+
+        for (Element e : listaCartoes) {
+            
+            Cartao c = new Cartao(
+                    e.getAttribute("codigo").getValue(),
+                    Double.parseDouble(e.getChild("saldo").getValue()),
+                    e.getChild("tipo").getValue());
+            cartoes.add(c);
+        }
+
+        return cartoes;
     }
 
 }
