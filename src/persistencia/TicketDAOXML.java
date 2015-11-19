@@ -5,7 +5,9 @@
  */
 package persistencia;
 
+import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Time;
@@ -19,6 +21,8 @@ import org.jdom2.Attribute;
 import org.jdom2.DataConversionException;
 import org.jdom2.Document;
 import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
@@ -30,8 +34,18 @@ public class TicketDAOXML implements ticketDAO {
 
     private Element root;
     private Document doc;
+    private File inputFile;
+    private SAXBuilder saxBuilder;
 
-    public TicketDAOXML() {
+    public TicketDAOXML() throws JDOMException, IOException {
+
+        inputFile = new File("tickets.xml");
+
+        saxBuilder = new SAXBuilder();
+
+        doc = saxBuilder.build(inputFile);
+
+        root = doc.getRootElement();
 
     }
 
@@ -82,13 +96,14 @@ public class TicketDAOXML implements ticketDAO {
 
         XMLOutputter xmlOutput = new XMLOutputter();
 
-        // display xml
         xmlOutput.setFormat(Format.getPrettyFormat());
+
         try {
-            xmlOutput.output(doc, new FileOutputStream("tickets.xml"));
+            xmlOutput.output(doc, new FileWriter("tickets.xml"));
         } catch (IOException ex) {
             Logger.getLogger(TicketDAOXML.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }
 
     @Override
@@ -102,7 +117,7 @@ public class TicketDAOXML implements ticketDAO {
                             aux,
                             aux.getEnder(),
                             e.getAttribute("codigo").getIntValue(),
-                            Double.parseDouble(e.getChild("valor").getValue()), 
+                            Double.parseDouble(e.getChild("valor").getValue()),
                             Time.valueOf(e.getChildText("emissao")),
                             Time.valueOf(e.getChildText("validade")));
                 }
@@ -113,18 +128,42 @@ public class TicketDAOXML implements ticketDAO {
             Logger.getLogger(TicketDAOXML.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(TicketDAOXML.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(TicketDAOXML.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
 
     @Override
     public List<Ticket> getTickets() {
-        ArrayList<Ticket> tickets = new ArrayList<>();
+        ArrayList<Ticket> tickets = new ArrayList<>();;
+        try {
+            ParquimetroDAOXML daoT = new ParquimetroDAOXML();
+            Parquimetro aux = daoT.getParquimetro();
 
-        for (Element e : root.getChildren()) {
-
+            for (Element e : root.getChildren()) {
+                
+                Ticket t = new Ticket(
+                        aux,
+                        aux.getEnder(),
+                        e.getAttribute("codigo").getIntValue(),
+                        Double.parseDouble(e.getChild("valor").getValue()),
+                        Time.valueOf(e.getChildText("emissao")),
+                        Time.valueOf(e.getChildText("validade")));              
+                
+                
+                tickets.add(t);
+            }            
+        } catch (ParquimetroDAOException ex) {
+            Logger.getLogger(TicketDAOXML.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(TicketDAOXML.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(TicketDAOXML.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DataConversionException ex) {
+            Logger.getLogger(TicketDAOXML.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;
+        return tickets;
     }
 
 }

@@ -1,23 +1,36 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <tickets>
-   <ticket codigo="55555">
-      <parquimetro>12345</parquimetro>
-      <emissao>08:30:00</emissao>
-      <validade>08:35:00</validade>
-      <rua>Rua R</rua>
-      <numero>123</numero>
-      <cidade>Cidade c</cidade>
-      <estado>Estado e</estado>
-      <pais>Pais p</pais>
-   </ticket>
-      <ticket codigo="66666">
-      <parquimetro>12345</parquimetro>
-      <emissao>08:30:00</emissao>
-      <validade>08:35:00</validade>
-      <rua>Rua R</rua>
-      <numero>123</numero>
-      <cidade>Cidade c</cidade>
-      <estado>Estado e</estado>
-      <pais>Pais p</pais>
-   </ticket>
+  <ticket codigo="55555">
+    <parquimetro>12345</parquimetro>
+    <valor>15.30</valor>
+    <emissao>08:30:00</emissao>
+    <validade>08:35:00</validade>
+    <rua>Rua R</rua>
+    <numero>123</numero>
+    <cidade>Cidade c</cidade>
+    <estado>Estado e</estado>
+    <pais>Pais p</pais>
+  </ticket>
+  <ticket codigo="66666">
+    <parquimetro>12345</parquimetro>
+    <valor>20.50</valor>
+    <emissao>08:30:00</emissao>
+    <validade>08:35:00</validade>
+    <rua>Rua R</rua>
+    <numero>123</numero>
+    <cidade>Cidade c</cidade>
+    <estado>Estado e</estado>
+    <pais>Pais p</pais>
+  </ticket>
+  <ticket codigo="55555">
+    <parquimetro>55555</parquimetro>
+    <valor>15.3</valor>
+    <emissao>08:30:00</emissao>
+    <validade>08:35:00</validade>
+    <rua>RuaR</rua>
+    <numero>123123</numero>
+    <cidade>Cidade C</cidade>
+    <estado>Estado E</estado>
+    <pais>Pais P</pais>
+  </ticket>
 </tickets>

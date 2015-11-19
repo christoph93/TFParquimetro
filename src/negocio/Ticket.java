@@ -70,7 +70,7 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return "Ticket{" + "parq=" + parq + ", endereco=" + endereco + ", codigo=" + codigo + ", emissao=" + emissao + ", validade=" + validade + ", valor=" + valor + '}';
+        return "Ticket{" + "parq=" + parq.getCodigo() + ", ticket=" + codigo + ", endereco=" + endereco +  ", emissao=" + emissao + ", validade=" + validade + ", valor=" + valor + '}';
     }
 
     

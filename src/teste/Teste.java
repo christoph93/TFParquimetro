@@ -5,8 +5,11 @@
  */
 package teste;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import negocio.Parquimetro;
+import negocio.Ticket;
+import org.jdom2.JDOMException;
 import persistencia.ParquimetroDAOException;
 import persistencia.ParquimetroDAOXML;
 import persistencia.TicketDAOXML;
@@ -20,17 +23,21 @@ public class Teste {
     
     
     
-    public static void main(String[] args) throws ParquimetroDAOException, SQLException, ticketDAOException {
+    public static void main(String[] args) throws ParquimetroDAOException, SQLException, ticketDAOException, IOException, JDOMException {
         
         
         //leitura do parquimetro.xml
          ParquimetroDAOXML daoP = new ParquimetroDAOXML();
-         Parquimetro p = daoP.getParquimetro();
-         System.out.println(p.toString());
+         Parquimetro p = daoP.getParquimetro();        
          
          //leitura do tickets.xml
-         TicketDAOXML daoT = new TicketDAOXML();
-         daoT.getTicketPorCodigo(55555);
+         TicketDAOXML daoT = new TicketDAOXML();         
+         
+         for (Ticket t : daoT.getTickets()){
+             System.out.println(t.toString());
+         }
+         
+         
          
          
          

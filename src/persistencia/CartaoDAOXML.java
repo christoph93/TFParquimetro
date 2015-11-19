@@ -21,8 +21,6 @@ import org.jdom2.input.SAXBuilder;
  */
 public class CartaoDAOXML implements CartaoDAO {
 
-    private String codigo, tipo;
-    private double saldo;
     private File inputFile;
     private SAXBuilder saxBuilder;
     private Document document;
@@ -41,12 +39,7 @@ public class CartaoDAOXML implements CartaoDAO {
             root = document.getRootElement();
 
             listaCartoes = root.getChildren();
-
-            for (Element parquimetro : listaCartoes) {
-                Attribute attribute = parquimetro.getAttribute("codigo");
-                codigo = attribute.getValue();
-
-            }
+            
         } catch (JDOMException | IOException e) {
         }
 
@@ -56,12 +49,15 @@ public class CartaoDAOXML implements CartaoDAO {
     public Cartao getCartao(String codigo) {
         Cartao c = null;
 
+        String cod, tipo;
+        double saldo;
+
         for (Element e : listaCartoes) {
             if (codigo.equals(e.getAttribute("codigo").getValue())) {
-                this.codigo = e.getAttribute("codigo").getValue();
-                this.saldo = Double.parseDouble(e.getChild("saldo").getValue());
-                this.tipo = e.getChild("tipo").getValue();
-                c = new Cartao(this.codigo, this.saldo, this.tipo);
+                cod = e.getAttribute("codigo").getValue();
+                saldo = Double.parseDouble(e.getChild("saldo").getValue());
+                tipo = e.getChild("tipo").getValue();
+                c = new Cartao(cod, saldo, tipo);
                 return c;
             }
         }
@@ -90,7 +86,7 @@ public class CartaoDAOXML implements CartaoDAO {
     @Override
     public boolean setSaldo(String codigoCartao, double valor) {
         for (Element e : listaCartoes) {
-            if (codigo.equals(e.getAttribute("codigo").getValue())) {
+            if (codigoCartao.equals(e.getAttribute("codigo").getValue())) {
                 e.getChild("saldo").setText(String.valueOf(valor));
                 return true;
             }
