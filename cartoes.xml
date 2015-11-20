@@ -16,4 +16,12 @@
     <saldo>15.5</saldo>
     <tipo>PREPAGO</tipo>
   </cartao>
+  <cartao codigo="123456789">
+    <saldo>15.5</saldo>
+    <tipo>PREPAGO</tipo>
+  </cartao>
+  <cartao codigo="123456789">
+    <saldo>15.5</saldo>
+    <tipo>PREPAGO</tipo>
+  </cartao>
 </cartoes>
