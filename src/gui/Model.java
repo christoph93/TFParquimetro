@@ -10,5 +10,17 @@ package gui;
  * @author ccalifi
  */
 public class Model {
+    private int contador;
     
+    public void setValor(int v){
+        contador = v;
+    }
+    
+    public int getValor() {
+        return contador;
+    }
+    
+    public void incrementaValor() {
+        contador++;
+    }
 }
