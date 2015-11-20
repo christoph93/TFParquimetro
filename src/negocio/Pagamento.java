@@ -5,13 +5,15 @@
  */
 package negocio;
 
+import persistencia.ParquimetroDAO;
+import persistencia.ParquimetroDAOXML;
+
 
 /**
  *
  * @author ccalifi
  */
-public class Pagamento {
-    
+public interface Pagamento {
     
     
     

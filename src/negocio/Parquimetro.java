@@ -6,6 +6,7 @@
 package negocio;
 
 import java.sql.Time;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,6 +15,7 @@ import java.sql.Time;
 public class Parquimetro {
 
     private int codigo;
+    private ArrayList<Moeda> moedas;
     private Endereco ender;
     private Time horaInicio;
     private Time horaFim;
@@ -22,7 +24,7 @@ public class Parquimetro {
     private Time incremento;
     private double valorIncremento;
 
-    public Parquimetro(Endereco e, int cod, Time hIni, Time hFim, Time tMin, Time tMax, Time incr, double vIncr) {
+    public Parquimetro(Endereco e, int cod, Time hIni, Time hFim, Time tMin, Time tMax, Time incr, double vIncr, ArrayList<Moeda> moedas) {
 
         this.codigo = cod; //fazer geração do código
         this.ender = e;
@@ -32,8 +34,17 @@ public class Parquimetro {
         tempoMax = tMax;
         incremento = incr;
         valorIncremento = vIncr;
+        this.moedas = moedas;
     }
 
+    public ArrayList<Moeda> getMoedas(){
+        return moedas;
+    }
+    
+    public void setMoedas(ArrayList<Moeda> moedas){
+        this.moedas = moedas;
+    }
+    
     public int getCodigo() {
         return codigo;
     }

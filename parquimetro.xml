@@ -12,5 +12,10 @@
 	<tempoMax>02:00:00</tempoMax>
 	<incremento>00:10:00</incremento>
 	<valorIncremento>0.25</valorIncremento>
+	<005>Y</005>
+	<010>Y</010>
+	<025>Y</025>
+	<050>Y</050>
+	<100>Y</100>
 </parquimetro>
 </parq>
