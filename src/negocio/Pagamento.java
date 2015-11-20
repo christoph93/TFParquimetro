@@ -15,6 +15,6 @@ import persistencia.ParquimetroDAOXML;
  */
 public interface Pagamento {
     
-    
+    public double getValor();
     
 }
