@@ -28,14 +28,14 @@ public class Cartao {
         tipo = t;
     }
     
-    private String geraCodigo(){
-        String cod = "";
-        
-        for (int i = 0; i <=3; i++){
-            cod += UUID.randomUUID().toString().replaceAll("-", "");
-        }        
-        return cod;
-    }
+//    private String geraCodigo(){
+//        String cod = "";
+//        
+//        for (int i = 0; i <=3; i++){
+//            cod += UUID.randomUUID().toString().replaceAll("-", "");
+//        }        
+//        return cod;
+//    }
 
     public String getCodigo() {
         return codigo;

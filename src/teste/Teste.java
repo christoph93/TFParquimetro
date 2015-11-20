@@ -8,6 +8,7 @@ package teste;
 import java.io.IOException;
 import java.sql.SQLException;
 import negocio.Cartao;
+import negocio.Moeda;
 import negocio.Parquimetro;
 import negocio.Ticket;
 import org.jdom2.JDOMException;
@@ -39,11 +40,10 @@ public class Teste {
          CartaoDAOXML daoC = new CartaoDAOXML();        
          
          
-         daoC.addcartao(daoC.getCartao("123456789"));
-         
-         for (Cartao c : daoC.getCartoes()){
-             System.out.println(c.toString());
+         for(Moeda m : daoP.getParquimetro().getMoedas()){
+             System.out.println(m);
          }
+        
          
          
          

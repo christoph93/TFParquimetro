@@ -36,11 +36,7 @@ public class Ticket {
         emissao = emiss;
         validade = val;                
     }
-    
-    
-    private int geraCodigo(){
-        return 55555; // fazer geração de código
-    }
+
 
     public Parquimetro getParquimetro() {
         return parq;
