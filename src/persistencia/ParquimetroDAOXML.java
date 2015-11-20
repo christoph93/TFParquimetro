@@ -11,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import negocio.Endereco;
 import negocio.Moeda;
 import negocio.Parquimetro;
@@ -34,14 +36,11 @@ public class ParquimetroDAOXML implements ParquimetroDAO {
     public ParquimetroDAOXML() throws ParquimetroDAOException, SQLException, IOException {
         try {
             inputFile = new File("parquimetro.xml");
-
             saxBuilder = new SAXBuilder();
-
             document = saxBuilder.build(inputFile);
-
             parq = document.getRootElement();
-
-        } catch (JDOMException e) {
+        } catch (JDOMException ex) {
+            Logger.getLogger(ParquimetroDAOXML.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -70,29 +69,28 @@ public class ParquimetroDAOXML implements ParquimetroDAO {
         tMax = Time.valueOf(parquimetro.getChild("tempoMax").getText());
         tIncr = Time.valueOf(parquimetro.getChild("incremento").getText());
         vIncr = Double.parseDouble(parquimetro.getChild("valorIncremento").getText());
-        
+
         moedas = new ArrayList<>();
-        
-        if (parquimetro.getChild("005").getText().equals("Y")){
+
+        if (parquimetro.getChild("CINCO").getText().equals("Y")) {
             moedas.add(Moeda.CINCO);
         }
-        
-        if (parquimetro.getChild("010").getText().equals("Y")){
+
+        if (parquimetro.getChild("DEZ").getText().equals("Y")) {
             moedas.add(Moeda.DEZ);
         }
-        
-        if (parquimetro.getChild("025").getText().equals("Y")){
+
+        if (parquimetro.getChild("VINTEECINCO").getText().equals("Y")) {
             moedas.add(Moeda.VINTEECINCO);
         }
-        
-        if (parquimetro.getChild("050").getText().equals("Y")){
+
+        if (parquimetro.getChild("CINQUENTA").getText().equals("Y")) {
             moedas.add(Moeda.CINQUENTA);
         }
-        
-        if (parquimetro.getChild("100").getText().equals("Y")){
+
+        if (parquimetro.getChild("CEM").getText().equals("Y")) {
             moedas.add(Moeda.UMREAL);
         }
-        
 
         Endereco e = new Endereco(rua, numero, cidade, estado, pais);
         Parquimetro p = new Parquimetro(e, codigo, hInicio, hFinal, tMin, tMax, tIncr, vIncr, moedas);
