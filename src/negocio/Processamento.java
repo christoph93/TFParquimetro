@@ -21,14 +21,16 @@ public class Processamento {
     private Time tempoMax;
     private Time tempoMin;
     private int aux;
+    private int numTick;
 
-    public Processamento(Parquimetro parq) {
+    public Processamento(Parquimetro parq, int numerTick) {
         tempo = Time.valueOf("00:00:00");
         parquim = parq;
         valorPagamento = 0.00;
         tempoMax = parquim.getTempoMax();
         tempoMin = parquim.getTempoMin();
         aux = 0;
+        numTick = numerTick;
     }
 
     public Time incrementaTempo() {
@@ -60,6 +62,8 @@ public class Processamento {
     }
 
     public boolean insereMoeada(BigDecimal vMoeda) {
+        System.out.println(vMoeda);
+        
         if (aux == 0) {
             pag = new PagamentoMoeda(parquim);
         }
@@ -67,7 +71,7 @@ public class Processamento {
 
         for (Moeda m : parquim.getMoedas()) {
             if (m.valor() == vMoeda.doubleValue()) {
-                return pag.recebe(m);
+               return pag.recebe(m);
             } else {
                 return false;
             }
@@ -77,16 +81,16 @@ public class Processamento {
 
     public String paga() {
         String troco = "";
-       if (pag.getValor() - valorPagamento == 0){
-           Emissao tick = new Emissao(tempo, valorPagamento, parquim);
-           return "Pagamento aceito.";
-       }else if(pag.getValor() - valorPagamento < 0){
-           return "Pagamento insuficiente";
-       } else if (pag.getValor() - valorPagamento > 0){
-           troco = "Pagamento aceito. Troco: ";
-           //fazer logica do troco
-       }
-       return troco;
+        if (pag.getValor() - valorPagamento == 0) {
+            Emissao tick = new Emissao(tempo, valorPagamento, parquim, numTick);
+            return "Pagamento aceito.";
+        } else if (pag.getValor() - valorPagamento < 0) {
+            return "Pagamento insuficiente";
+        } else if (pag.getValor() - valorPagamento > 0) {
+            troco = "Pagamento aceito. Troco: ";
+            //fazer logica do troco
+        }
+        return troco;
     }
 
     public double getValorPagamento() {
@@ -94,14 +98,14 @@ public class Processamento {
     }
 
     boolean pagaComCartao(Cartao cart) {
-        if(aux == 0){
+        if (aux == 0) {
             pag = new PagamentoCartao(cart);
-        }else{
+        } else {
             return false;
         }
-        
+
         return pag.recebe();
-        
+
     }
 
 }
