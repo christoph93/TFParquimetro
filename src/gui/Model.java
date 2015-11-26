@@ -5,103 +5,34 @@
  */
 package gui;
 
-import java.io.IOException;
-import java.sql.SQLException;
+import java.math.BigDecimal;
 import java.sql.Time;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import negocio.Moeda;
-import negocio.Pagamento;
-import negocio.PagamentoCartao;
-import negocio.PagamentoMoeda;
-import negocio.Parquimetro;
-import negocio.Processamento;
-import persistencia.ParquimetroDAOException;
-import persistencia.ParquimetroDAOXML;
 
-/**
- *
- * @author ccalifi
- */
 public class Model {        
-        private ParquimetroDAOXML daoP;
-        private Parquimetro p;
-        private Processamento proc;
-        private boolean existePagMoeda = false;
-        private Pagamento pag;
-        
-        
-        
-        public Model(){
-            try {                
-                daoP  = new ParquimetroDAOXML();
-                p = daoP.getParquimetro(); 
-                proc = new Processamento(p);
-            } catch (ParquimetroDAOException ex) {
-                Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
     
-    public void incrementaTempo(){
-        
-    }
-        
-    public void decrementaTempo() {
-        
+    private Controller c;
+    private Time tempo = Time.valueOf("00:00:00");
+    private BigDecimal valor = new BigDecimal(0);
+    
+    
+    public void setValor(BigDecimal v){
+        valor = valor.add(v);
     }
     
-        
-    public void cancelar(){
-        //cancela
+    public BigDecimal getValor() {
+        return valor;
     }
     
-    public void imprime(){
-        
+    public void setTempo(int v) {
+        tempo.setMinutes(tempo.getMinutes() + v);
     }
     
-    public void insereCinco(){
-        if(!existePagMoeda){
-            try {
-                pag = new PagamentoMoeda();
-            } catch (ParquimetroDAOException ex) {
-                Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (IOException ex) {
-                Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        existePagMoeda = true;
-        proc.insereMoeada(Moeda.CINCO);
+    public Time getTempo() {
+        return tempo;
     }
     
-    public void insereDez(){
-        existePagMoeda = true;
-    proc.insereMoeada(Moeda.DEZ);    
+    public void clear(){
+        valor = new BigDecimal(0);
+        tempo = Time.valueOf("00:00:00");
     }
-    
-    public void insereVinteECinco(){
-        existePagMoeda = true;
-        proc.insereMoeada(Moeda.VINTEECINCO);
-    }
- 
-    
-    public void insereCinquenta(){
-        existePagMoeda = true;
-        proc.insereMoeada(Moeda.CINQUENTA);
-    }
-    
-    public void insereUm(){
-        existePagMoeda = true;
-        proc.insereMoeada(Moeda.UMREAL);
-    }
-    
-    public void pagaComCartao(){
-        
-    }
-    
 }

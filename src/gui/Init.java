@@ -22,7 +22,9 @@ public class Init {
         c.associaModel(m);
         c.associaView(v);
 
+        c.setUpViewEvents();
         v.setVisible(true);
+        
     }
 
     public static void main(String[] args) {
