@@ -8,15 +8,15 @@ package gui;
 import java.math.BigDecimal;
 import java.sql.Time;
 import negocio.Facade;
+import negocio.Parquimetro;
 
 public class Model {        
     
     private Controller c;
     private Time tempo = Time.valueOf("00:00:00");
     private BigDecimal valor = new BigDecimal(0);
-    private Facade f = new Facade();
-    
-    
+    private Facade f;
+
     public String setValor(BigDecimal v){
         if(f.insereMoeda(v)){
          valor = valor.add(v);
@@ -42,4 +42,16 @@ public class Model {
         valor = new BigDecimal(0);
         tempo = Time.valueOf("00:00:00");
     }
+    
+    public Facade getFacade() {
+        return f;
+    }
+
+    public void setFacade(Parquimetro p) {
+        if(f == null){
+            f = new Facade(p);
+        }
+    }
+    
+    
 }
