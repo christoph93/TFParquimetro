@@ -31,7 +31,7 @@ public class Processamento {
         aux = 0;
     }
 
-    public boolean incrementaTempo() {
+    public Time incrementaTempo() {
         long auxMilis = tempo.getTime() + parquim.getIncremento().getTime();
         Time aux = Time.valueOf("00:00:00");
         aux.setTime(auxMilis);
@@ -39,13 +39,13 @@ public class Processamento {
         if (!aux.after(tempoMax)) {
             tempo.setTime(tempo.getTime() + parquim.getIncremento().getTime());
             valorPagamento += parquim.getValorIncremento();
-            return true;
+            return tempo;
         } else {
-            return false;
+            return tempo;
         }
     }
 
-    public boolean decrementaTempo() {
+    public Time decrementaTempo() {
         long auxMilis = tempo.getTime() - parquim.getIncremento().getTime();
         Time aux = Time.valueOf("00:00:00");
         aux.setTime(auxMilis);
@@ -53,9 +53,9 @@ public class Processamento {
         if (!aux.before(tempoMin)) {
             tempo.setTime(tempo.getTime() - parquim.getIncremento().getTime());
             valorPagamento += parquim.getValorIncremento();
-            return true;
+            return tempo;
         } else {
-            return false;
+            return tempo;
         }
     }
 
@@ -75,8 +75,18 @@ public class Processamento {
         return false;
     }
 
-    public double paga() {
-       return pag.getValor() - valorPagamento;        
+    public String paga() {
+        String troco = "";
+       if (pag.getValor() - valorPagamento == 0){
+           Emissao tick = new Emissao(tempo, valorPagamento, parquim);
+           return "Pagamento aceito.";
+       }else if(pag.getValor() - valorPagamento < 0){
+           return "Pagamento insuficiente";
+       } else if (pag.getValor() - valorPagamento > 0){
+           troco = "Pagamento aceito. Troco: ";
+           //fazer logica do troco
+       }
+       return troco;
     }
 
     public double getValorPagamento() {

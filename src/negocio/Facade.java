@@ -6,6 +6,7 @@
 package negocio;
 
 import java.math.BigDecimal;
+import java.sql.Time;
 import persistencia.CartaoDAOXML;
 
 /**
@@ -32,15 +33,16 @@ public class Facade {
         return "Retornando moeadas";
     }
     
+        
     public String imprime(){
         return "Pagamento aceito. Imprimindo ticket";
     }
     
-    public boolean decrementaTempo(){
+    public Time decrementaTempo(){
         return proc.decrementaTempo();
     }
     
-    public boolean incrementaTempo(){
+    public Time incrementaTempo(){
         return proc.incrementaTempo();
     }
     
