@@ -5,6 +5,8 @@
  */
 package negocio;
 
+import java.math.BigDecimal;
+
 /**
  *
  * @author ccalifi
@@ -28,7 +30,7 @@ public class Facade {
         return false;
     }
     
-    public boolean insereMoeda(String moeda){
+    public boolean insereMoeda(BigDecimal moeda){
         return false;
     }
     
