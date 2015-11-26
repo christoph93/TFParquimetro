@@ -12,6 +12,8 @@ import javax.swing.SwingUtilities;
  */
 public class Init {
 
+    
+    
     private static void criarGui() {
         Model m = new Model();
         View v = new View();

@@ -126,4 +126,9 @@ public class CartaoDAOXML implements CartaoDAO {
         return cartoes;
     }
 
+    @Override
+    public Cartao getCartao() {
+        return getCartoes().get(0);
+    }
+
 }

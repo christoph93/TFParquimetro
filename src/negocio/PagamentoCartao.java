@@ -5,6 +5,8 @@
  */
 package negocio;
 
+import persistencia.CartaoDAOXML;
+
 /**
  *
  * @author ccalifi
@@ -13,9 +15,11 @@ public class PagamentoCartao implements Pagamento {
 
     private double valorTotal;
     private Cartao ca;
+    private CartaoDAOXML daoC;
 
-    public PagamentoCartao(Cartao cart) {
-        ca = cart;
+    public PagamentoCartao() {
+        daoC = new CartaoDAOXML();
+        ca = daoC.getCartao();
     }
 
     public void leCartao() {

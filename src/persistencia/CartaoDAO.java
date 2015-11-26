@@ -16,6 +16,8 @@ public interface CartaoDAO {
     
     public Cartao getCartao(String codigo);
     
+    public Cartao getCartao();
+    
     public void addcartao(Cartao cart);
     
     public boolean  setSaldo(String codigoCartao, double valor);
