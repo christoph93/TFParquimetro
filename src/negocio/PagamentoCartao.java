@@ -14,23 +14,28 @@ import persistencia.CartaoDAOXML;
 public class PagamentoCartao implements Pagamento {
 
     private double valorTotal;
-    private Cartao ca;
-    private CartaoDAOXML daoC;
+    private Cartao cart; 
 
-    public PagamentoCartao() {
-        daoC = new CartaoDAOXML();
-        ca = daoC.getCartao();
+    public PagamentoCartao(Cartao ca) {
+        cart = ca;
     }
 
-    public void leCartao() {
-        if (ca.getTipo().equalsIgnoreCase("residente")){
+    @Override
+    public boolean recebe() {
+        if (cart.getTipo().equalsIgnoreCase("residente")){
             
         }
+        return false;
     }
 
     @Override
     public double getValor() {
         return valorTotal;
+    }
+
+    @Override
+    public boolean recebe(Moeda moed) {
+        return false;
     }
 
 }

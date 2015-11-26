@@ -16,18 +16,15 @@ import persistencia.ParquimetroDAOXML;
  */
 public class PagamentoMoeda implements Pagamento {
 
-    private ParquimetroDAOXML daoP;
-    private Parquimetro p;
+    private Parquimetro parq;
     private double valorTotal;
 
-    public PagamentoMoeda() throws ParquimetroDAOException, SQLException, IOException {
-
-        daoP = new ParquimetroDAOXML();
-        p = daoP.getParquimetro();
+    public PagamentoMoeda(Parquimetro pq) {
+        parq = pq;
     }
 
-    public boolean recebeMoeda(Moeda m) {
-        if (p.getMoedas().contains(m)) {
+    public boolean recebe(Moeda m) {
+        if (parq.getMoedas().contains(m)) {
             valorTotal += m.valor();
             return true;
         } else {
@@ -38,6 +35,11 @@ public class PagamentoMoeda implements Pagamento {
     @Override
     public double getValor() {
         return valorTotal;
+    }
+
+    @Override
+    public boolean recebe() {
+        return false;
     }
 
 }

@@ -6,6 +6,7 @@
 package negocio;
 
 import java.math.BigDecimal;
+import persistencia.CartaoDAOXML;
 
 /**
  *
@@ -14,28 +15,42 @@ import java.math.BigDecimal;
 public class Facade {
     
     
-    public void cancela(){
-        
+    private Cartao cart;
+    private CartaoDAOXML daoC;
+    private Processamento proc;
+   private Parquimetro parquim;
+
+    public Facade(Parquimetro parq) {
+        daoC = new CartaoDAOXML();       
+        proc = new Processamento(parq);
     }
     
-    public void imprime(){
-        
+    
+    
+    public String cancela(){
+        proc = new Processamento(parquim);
+        return "Retornando moeadas";
+    }
+    
+    public String imprime(){
+        return "Pagamento aceito. Imprimindo ticket";
     }
     
     public boolean decrementaTempo(){
-        return false;
+        return proc.decrementaTempo();
     }
     
     public boolean incrementaTempo(){
-        return false;
+        return proc.incrementaTempo();
     }
     
     public boolean insereMoeda(BigDecimal moeda){
-        return false;
+        return proc.insereMoeada(moeda);
     }
     
     public boolean pagaComCartao(){
-        return false;
+        cart = daoC.getCartao();
+        return proc.pagaComCartao(cart);
     }
     
     
