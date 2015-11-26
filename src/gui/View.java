@@ -7,6 +7,7 @@ package gui;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -74,6 +75,10 @@ public class View extends javax.swing.JFrame {
     
     public JTextField getTempo() {
         return tempo;
+    }
+
+    public JTextArea getConsole() {
+        return jTextArea1;
     }    
 
     /**

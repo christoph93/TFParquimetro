@@ -40,13 +40,14 @@ public class Controller{
             model.clear();
             view.getTempo().setText(model.getTempo().toString());
             view.getValor().setText(model.getValor().toString());
+            view.getConsole().setText(null);
         };                
         view.getBtCancelar().addActionListener(btCancelar);
 
         btUm = (ActionEvent actionEvent) -> {
             System.out.println("Teste R$1.00!");
             setCartaoEnable(Boolean.FALSE);
-            model.setValor(BigDecimal.valueOf(1));
+            view.getConsole().setText(view.getConsole().getText() + "\n" + model.setValor(BigDecimal.valueOf(1.00)));
             view.getValor().setText(model.getValor().toString());
         };                
         view.getBtUm().addActionListener(btUm);
@@ -68,7 +69,7 @@ public class Controller{
         btDez = (ActionEvent actionEvent) -> {
             System.out.println("Teste R$0.10!");
             setCartaoEnable(Boolean.FALSE);
-            model.setValor(BigDecimal.valueOf(0.10));
+            view.getConsole().setText(view.getConsole().getText() + "\n" + model.setValor(BigDecimal.valueOf(0.10)));
             view.getValor().setText(model.getValor().toString());
         };                
         view.getBtDez().addActionListener(btDez);
@@ -76,7 +77,7 @@ public class Controller{
         btCinq = (ActionEvent actionEvent) -> {
             System.out.println("Teste R$0.50!");
             setCartaoEnable(Boolean.FALSE);
-            model.setValor(BigDecimal.valueOf(0.50));
+            view.getConsole().setText(view.getConsole().getText() + "\n" + model.setValor(BigDecimal.valueOf(0.50)));
             view.getValor().setText(model.getValor().toString());
         };                
         view.getBtCinq().addActionListener(btCinq);
@@ -84,7 +85,7 @@ public class Controller{
         btQuarter = (ActionEvent actionEvent) -> {
             System.out.println("Teste R$0.25!");
             setCartaoEnable(Boolean.FALSE);
-            model.setValor(BigDecimal.valueOf(0.25));
+            view.getConsole().setText(view.getConsole().getText() + "\n" + model.setValor(BigDecimal.valueOf(0.25)));
             view.getValor().setText(model.getValor().toString());
         };                
         view.getBtQuarter().addActionListener(btQuarter);
@@ -92,7 +93,7 @@ public class Controller{
         btCinco = (ActionEvent actionEvent) -> {
             System.out.println("Teste R$0.05!");
             setCartaoEnable(Boolean.FALSE);
-            model.setValor(BigDecimal.valueOf(0.05));
+            view.getConsole().setText(view.getConsole().getText() + "\n" + model.setValor(BigDecimal.valueOf(0.05)));
             view.getValor().setText(model.getValor().toString());
         };                
         view.getBtCinco().addActionListener(btCinco);
