@@ -5,8 +5,7 @@
  */
 package negocio;
 
-import persistencia.ParquimetroDAO;
-import persistencia.ParquimetroDAOXML;
+
 
 
 /**
@@ -16,5 +15,9 @@ import persistencia.ParquimetroDAOXML;
 public interface Pagamento {
     
     public double getValor();
+    
+    public boolean recebe();
+    
+    public boolean recebe(Moeda moed);
     
 }
