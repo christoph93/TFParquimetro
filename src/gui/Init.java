@@ -30,7 +30,7 @@ public class Init {
             
             ParquimetroDAOXML daoP = new ParquimetroDAOXML();
             Parquimetro p = daoP.getParquimetro();
-            Facade f = new Facade(p);
+            m.setFacade(p);
             
             c.associaModel(m);
             c.associaView(v);
