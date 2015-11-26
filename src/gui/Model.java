@@ -29,9 +29,15 @@ public class Model {
         return valor;
     }
     
-    public void setTempo(int v) {
-        
+    public void incrementaTempo(int v) {
+        if(f.incrementaTempo()){
         tempo.setMinutes(tempo.getMinutes() + v);
+        }
+    }
+    public void decrementaTempo(int v) {
+        if(f.decrementaTempo()){
+            tempo.setMinutes(tempo.getMinutes() + v);
+        }
     }
     
     public Time getTempo() {

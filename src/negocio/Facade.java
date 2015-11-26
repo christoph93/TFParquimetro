@@ -30,10 +30,9 @@ public class Facade {
     
     public String cancela(){
         proc = new Processamento(parquim);
-        return "Retornando moeadas";
+        return "Retornando moedas";
     }
     
-        
     public String imprime(){
         return "Pagamento aceito. Imprimindo ticket";
     }
