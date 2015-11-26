@@ -28,8 +28,7 @@ public class Controller{
     public void setUpViewEvents() {
         incrementa = (ActionEvent actionEvent) -> {
             System.out.println("Teste incrementa!");
-            model.incrementaTempo(10);
-            view.getTempo().setText(model.getTempo().toString());
+            view.getTempo().setText(model.incrementaTempo().toString());
         };                
         view.getIncrementa().addActionListener(incrementa);
 
@@ -61,8 +60,7 @@ public class Controller{
         
         btDecrementa = (ActionEvent actionEvent) -> {
             System.out.println("Teste decrementa!");
-            model.decrementaTempo(10);
-            view.getTempo().setText(model.getTempo().toString());            
+            view.getTempo().setText(model.decrementaTempo().toString());            
         };                
         view.getBtDecrementa().addActionListener(btDecrementa);
         
