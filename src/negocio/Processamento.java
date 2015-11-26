@@ -75,9 +75,8 @@ public class Processamento {
         return false;
     }
 
-    public boolean paga() {
-       
-        return false;
+    public double paga() {
+       return pag.getValor() - valorPagamento;        
     }
 
     public double getValorPagamento() {
