@@ -37,14 +37,14 @@ public class Processamento {
     }
 
     public double calculaValorPorTempo() {
-        
-        return 0;
+        double aux = tempo.getSeconds() / incremento.getSeconds();
+        return (int) aux * parquim.getValorIncremento();
     }
 
-    public String incrementaTempo() {
-
+    public String[] incrementaTempo() {
         if (tempo.plus(incremento).compareTo(tempoMax) <= 0) {
             tempo = tempo.plus(incremento);
+            calculaValorPorTempo();
         }
 
         long aux = tempo.getSeconds();
@@ -52,27 +52,26 @@ public class Processamento {
                 aux / 3600,
                 (aux % 3600) / 60,
                 aux % 60);
-
-        return t;
+        String[] a = {t, String.valueOf(valorPagamento)};
+        return a;
     }
 
     public String getTempoMinimo() {
         return parquim.getTempoMin().toString();
     }
 
-    public String decrementaTempo() {
-
+    public String[] decrementaTempo() {
         if (tempo.minus(incremento).compareTo(tempoMin) >= 0) {
             tempo = tempo.minus(incremento);
+            calculaValorPorTempo();
         }
-
         long aux = tempo.getSeconds();
         String t = String.format("%d:%02d:%02d",
                 aux / 3600,
                 (aux % 3600) / 60,
                 aux % 60);
-
-        return t;
+        String[] a = {t, String.valueOf(valorPagamento)};
+        return a;
     }
 
     public boolean insereMoeada(BigDecimal vMoeda) {
@@ -92,7 +91,7 @@ public class Processamento {
     public String paga() {
 //        String troco = "";
 //        if (pag.getValor() - valorPagamento == 0) {
-//            Emissao tick = new Emissao(tempo,numTick, valorPagamento, parquim);
+//            Emissao tick = new Emissao(tempo, numTick, valorPagamento, parquim);
 //            return "Pagamento aceito.";
 //        } else if (pag.getValor() - valorPagamento < 0) {
 //            return "Pagamento insuficiente";
@@ -101,7 +100,6 @@ public class Processamento {
 //            //fazer logica do troco
 //        }
 //        return troco;
-        return null;
     }
 
     public double getValorPagamento() {

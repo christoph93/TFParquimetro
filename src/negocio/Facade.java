@@ -40,7 +40,7 @@ public class Facade {
         return "Pagamento aceito. Imprimindo ticket";
     }
 
-    public String decrementaTempo() {
+    public String[] decrementaTempo() {
         return proc.decrementaTempo();
     }
     
@@ -48,7 +48,7 @@ public class Facade {
         return proc.getTempoMinimo();
     }
 
-    public String incrementaTempo() {
+    public String[] incrementaTempo() {
         return proc.incrementaTempo();
     }
 
