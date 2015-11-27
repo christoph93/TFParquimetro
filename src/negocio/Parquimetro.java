@@ -131,7 +131,12 @@ public class Parquimetro {
 
     @Override
     public String toString() {
-        return "Parquimetro{" + "codigo=" + codigo + ", ender=" + ender.toString() + ", horaInicio=" + horaInicio + ", horaFim=" + horaFim + ", tempoMin=" + tempoMin + ", tempoMax=" + tempoMax + ", incremento=" + incremento + ", valorIncremento=" + valorIncremento + '}';
+        String moedasAc = "";
+        for (Moeda m : moedas){
+            moedasAc += m.valor() + " ";
+        }
+        return "Parquimetro{" + "codigo=" + codigo + ", ender=" + ender.toString() + ", horaInicio=" + horaInicio + ", horaFim=" + horaFim + ", tempoMin=" + tempoMin + ", tempoMax=" + tempoMax + ", incremento=" + incremento + ", valorIncremento=" + valorIncremento +
+                "moedas aceitas: " + moedasAc +'}';
     }
 
 }

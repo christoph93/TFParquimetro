@@ -14,45 +14,45 @@ import persistencia.CartaoDAOXML;
  * @author ccalifi
  */
 public class Facade {
-    
-    
+
     private Cartao cart;
     private CartaoDAOXML daoC;
     private Processamento proc;
-   private Parquimetro parquim;
+    private Parquimetro parquim;
+    private int numeracaoTickets;
 
     public Facade(Parquimetro parq) {
-        daoC = new CartaoDAOXML();       
-        proc = new Processamento(parq);
+        numeracaoTickets = 0;
+        daoC = new CartaoDAOXML();
+        proc = new Processamento(parq, numeracaoTickets);
+        
     }
-    
-    
-    
-    public String cancela(){
-        proc = new Processamento(parquim);
+
+    public String cancela() {
+        proc = new Processamento(parquim, numeracaoTickets);
         return "Retornando moedas";
     }
-    
-    public String imprime(){
+
+    public String imprime() {
+        numeracaoTickets++;
         return "Pagamento aceito. Imprimindo ticket";
     }
-    
-    public Time decrementaTempo(){
+
+    public Time decrementaTempo() {
         return proc.decrementaTempo();
     }
-    
-    public Time incrementaTempo(){
+
+    public Time incrementaTempo() {
         return proc.incrementaTempo();
     }
-    
-    public boolean insereMoeda(BigDecimal moeda){
+
+    public boolean insereMoeda(BigDecimal moeda) {
         return proc.insereMoeada(moeda);
     }
-    
-    public boolean pagaComCartao(){
+
+    public boolean pagaComCartao() {
         cart = daoC.getCartao();
         return proc.pagaComCartao(cart);
     }
-    
-    
+
 }

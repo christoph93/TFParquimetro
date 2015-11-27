@@ -23,7 +23,7 @@ public class PagamentoMoeda implements Pagamento {
         parq = pq;
     }
 
-    public boolean recebe(Moeda m) {
+    public boolean recebe(Moeda m) {        
         if (parq.getMoedas().contains(m)) {
             valorTotal += m.valor();
             return true;

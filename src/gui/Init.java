@@ -30,6 +30,7 @@ public class Init {
             
             ParquimetroDAOXML daoP = new ParquimetroDAOXML();
             Parquimetro p = daoP.getParquimetro();
+            System.out.println(p);
             m.setFacade(p);
             
             c.associaModel(m);

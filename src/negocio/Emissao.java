@@ -19,16 +19,33 @@ import persistencia.TicketDAOXML;
 class Emissao {
     
     private TicketDAOXML daoT;
+    private Ticket tick;
     
     
-    public Emissao(Time tempo, double valorT, Parquimetro parq){
+    public Emissao(Time tempo, double valorT, Parquimetro parq, int numTick){
         try {
             daoT = new TicketDAOXML();
+            
+            Time tempoIni = Time.valueOf("00:00:00");
+            tempoIni.setTime(System.currentTimeMillis());
+            Time tempoFim = Time.valueOf("00:00:00");
+            tempoFim.setTime(tempoIni.getTime() + tempo.getTime());
+            
+            tick = new Ticket(parq, parq.getEnder(), numTick, valorT, tempoIni, tempoFim);
+            
+            emiteTicket();
+            
         } catch (JDOMException ex) {
             Logger.getLogger(Emissao.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Emissao.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    private void emiteTicket() {
+        
+        
+        
     }
     
 }
