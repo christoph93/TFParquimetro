@@ -5,7 +5,7 @@
  */
 package negocio;
 
-import java.sql.Time;
+import java.time.*;
 import java.util.ArrayList;
 
 /**
@@ -17,14 +17,14 @@ public class Parquimetro {
     private int codigo;
     private ArrayList<Moeda> moedas;
     private Endereco ender;
-    private Time horaInicio;
-    private Time horaFim;
-    private Time tempoMin;
-    private Time tempoMax;
-    private Time incremento;
+    private LocalTime horaInicio;
+    private LocalTime horaFim;
+    private Duration tempoMin;
+    private Duration tempoMax;
+    private Duration incremento;
     private double valorIncremento;
 
-    public Parquimetro(Endereco e, int cod, Time hIni, Time hFim, Time tMin, Time tMax, Time incr, double vIncr, ArrayList<Moeda> moedas) {
+    public Parquimetro(Endereco e, int cod, LocalTime hIni, LocalTime hFim, Duration tMin, Duration tMax, Duration incr, double vIncr, ArrayList<Moeda> moedas) {
 
         this.codigo = cod; //fazer geração do código
         this.ender = e;
@@ -61,63 +61,63 @@ public class Parquimetro {
         this.ender = ender;
     }
 
-    public Time getHoraInicio() {
+    public LocalTime getHoraInicio() {
         return horaInicio;
     }
 
     public void setHoraInicio(String horaInicio) {
-        this.horaInicio = Time.valueOf(horaInicio);
+        this.horaInicio = LocalTime.parse(horaInicio);
     }
 
-    public void setHoraInicio(Time horaInicio) {
+    public void setHoraInicio(LocalTime horaInicio) {
         this.horaInicio = horaInicio;
     }
 
-    public Time getHoraFim() {
+    public LocalTime getHoraFim() {
         return horaFim;
     }
 
     public void setHoraFim(String horaFim) {
-        this.horaFim = Time.valueOf(horaFim);
+        this.horaFim = LocalTime.parse(horaFim);
     }
 
-    public void setHoraFim(Time horaFim) {
+    public void setHoraFim(LocalTime horaFim) {
         this.horaFim = horaFim;
     }
 
-    public Time getTempoMin() {
+    public Duration getTempoMin() {
         return tempoMin;
     }
 
     public void setTempoMin(String tempoMin) {
-        this.tempoMin = Time.valueOf(tempoMin);
+        this.tempoMin = Duration.parse(tempoMin);
     }
 
-    public void setTempoMin(Time tempoMin) {
+    public void setTempoMin(Duration tempoMin) {
         this.tempoMin = tempoMin;
     }
 
-    public Time getTempoMax() {
+    public Duration getTempoMax() {
         return tempoMax;
     }
 
     public void setTempoMax(String tempoMax) {
-        this.tempoMax = Time.valueOf(tempoMax);
+        this.tempoMax = Duration.parse(tempoMax);
     }
 
-    public void setTempoMax(Time tempoMax) {
+    public void setTempoMax(Duration tempoMax) {
         this.tempoMax = tempoMax;
     }
 
-    public Time getIncremento() {
+    public Duration getIncremento() {
         return incremento;
     }
 
     public void setIncremento(String incremento) {
-        this.incremento = Time.valueOf(incremento);
+        this.incremento = Duration.parse(incremento);
     }
 
-    public void setIncremento(Time incremento) {
+    public void setIncremento(Duration incremento) {
         this.incremento = incremento;
     }
 

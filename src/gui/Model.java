@@ -29,13 +29,13 @@ public class Model {
         return valor;
     }
     
-    public Time incrementaTempo() {
+    public String incrementaTempo() {
         //System.out.println(f.incrementaTempo());
        return f.incrementaTempo();
     }
     
-    public Time decrementaTempo() {
-        System.out.println(f.decrementaTempo());
+    public String decrementaTempo() {
+        //System.out.println(f.decrementaTempo());
        return f.decrementaTempo();
     }
     

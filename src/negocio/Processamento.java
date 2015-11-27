@@ -6,7 +6,7 @@
 package negocio;
 
 import java.math.BigDecimal;
-import java.sql.Time;
+import java.time.*;
 
 /**
  *
@@ -14,20 +14,20 @@ import java.sql.Time;
  */
 public class Processamento {
 
-    private Time tempo;
+    private Duration tempo;
     private Pagamento pag;
     private Parquimetro parquim;
     private double valorPagamento;
-    private Time tempoMax;
-    private Time tempoMin;
+    private Duration tempoMax;
+    private Duration tempoMin;
     private int aux;
     private int numTick;
-    private Time incremento;
+    private Duration incremento;
 
     public Processamento(Parquimetro parq, int numerTick) {
         tempo = parq.getTempoMin();
         parquim = parq;
-        
+
         tempoMax = parquim.getTempoMax();
         tempoMin = parquim.getTempoMin();
         aux = 0;
@@ -35,51 +35,44 @@ public class Processamento {
         incremento = parquim.getIncremento();
         valorPagamento = calculaValorPorTempo();
     }
-    
-    
-    public double calculaValorPorTempo(){
-        Time a1 = Time.valueOf("00:00:00");
-        long aux = System.currentTimeMillis();
-                
-        a1.setTime(aux);
-        System.out.println(a1);
-        
+
+    public double calculaValorPorTempo() {
         
         return 0;
     }
 
-    public Time incrementaTempo() {
-        Time aux = Time.valueOf("00:00:00");
-        aux.setTime(tempo.getTime());
-        aux.setMinutes(aux.getMinutes() + incremento.getMinutes());
+    public String incrementaTempo() {
 
-
-        if (aux.compareTo(tempoMax) <= 0) {
-            tempo.setHours(aux.getHours());
-            tempo.setMinutes(aux.getMinutes());
-            valorPagamento += parquim.getValorIncremento();
-            System.out.println("tempo se passou: " + tempo);
+        if (tempo.plus(incremento).compareTo(tempoMax) <= 0) {
+            tempo = tempo.plus(incremento);
         }
 
-        return tempo;
-    }
-    
-    public Time getTempoMinimo(){
-        return parquim.getTempoMin();
+        long aux = tempo.getSeconds();
+        String t = String.format("%d:%02d:%02d",
+                aux / 3600,
+                (aux % 3600) / 60,
+                aux % 60);
+
+        return t;
     }
 
-    public Time decrementaTempo() {
-        Time aux = Time.valueOf("00:00:00");
-        aux.setTime(tempo.getTime());
-        aux.setMinutes(aux.getMinutes() - incremento.getMinutes());
-          
-        if (aux.compareTo(tempoMin) >= 0) {
-            tempo.setHours(aux.getHours());
-            tempo.setMinutes(aux.getMinutes());
-            valorPagamento -= parquim.getValorIncremento();
-            System.out.println("tempo se passou: " + tempo);
+    public String getTempoMinimo() {
+        return parquim.getTempoMin().toString();
+    }
+
+    public String decrementaTempo() {
+
+        if (tempo.minus(incremento).compareTo(tempoMin) >= 0) {
+            tempo = tempo.minus(incremento);
         }
-        return tempo;
+
+        long aux = tempo.getSeconds();
+        String t = String.format("%d:%02d:%02d",
+                aux / 3600,
+                (aux % 3600) / 60,
+                aux % 60);
+
+        return t;
     }
 
     public boolean insereMoeada(BigDecimal vMoeda) {

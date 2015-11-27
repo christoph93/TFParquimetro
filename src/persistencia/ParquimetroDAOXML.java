@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.time.Duration;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -48,7 +50,8 @@ public class ParquimetroDAOXML implements ParquimetroDAO {
     public Parquimetro getParquimetro() {
 
         String rua, cidade, estado, pais;
-        Time hInicio, hFinal, tMin, tMax, tIncr;
+        LocalTime hInicio, hFinal;
+        Duration tMin, tMax, tIncr;
         int numero, codigo;
         double vIncr;
         ArrayList<Moeda> moedas;
@@ -63,11 +66,11 @@ public class ParquimetroDAOXML implements ParquimetroDAO {
         pais = parquimetro.getChild("pais").getText();
         numero = Integer.parseInt(parquimetro.getChild("numero").getText());
 
-        hInicio = Time.valueOf(parquimetro.getChild("horaInicio").getText());
-        hFinal = Time.valueOf(parquimetro.getChild("horaFinal").getText());
-        tMin = Time.valueOf(parquimetro.getChild("tempoMin").getText());
-        tMax = Time.valueOf(parquimetro.getChild("tempoMax").getText());
-        tIncr = Time.valueOf(parquimetro.getChild("incremento").getText());
+        hInicio = LocalTime.parse(parquimetro.getChild("horaInicio").getText());
+        hFinal = LocalTime.parse(parquimetro.getChild("horaFinal").getText());
+        tMin = Duration.parse(parquimetro.getChild("tempoMin").getText());
+        tMax = Duration.parse(parquimetro.getChild("tempoMax").getText());
+        tIncr = Duration.parse(parquimetro.getChild("incremento").getText());
         vIncr = Double.parseDouble(parquimetro.getChild("valorIncremento").getText());
 
         moedas = new ArrayList<>();

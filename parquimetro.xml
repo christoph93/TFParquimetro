@@ -8,9 +8,9 @@
 		<pais>Pais P</pais>
 		<horaInicio>08:30:00</horaInicio>
 		<horaFinal>18:30:00</horaFinal>
-		<tempoMin>00:30:00</tempoMin>
-		<tempoMax>02:00:00</tempoMax>
-		<incremento>00:10:00</incremento>
+		<tempoMin>PT30M</tempoMin>
+		<tempoMax>PT2H</tempoMax>
+		<incremento>PT10M</incremento>
 		<valorIncremento>0.25</valorIncremento>
 		<CINCO>Y</CINCO>
 		<DEZ>Y</DEZ>

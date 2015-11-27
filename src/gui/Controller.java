@@ -28,7 +28,7 @@ public class Controller{
     public void setUpViewEvents() {
         incrementa = (ActionEvent actionEvent) -> {
             System.out.println("Teste incrementa!");
-            view.getTempo().setText(model.incrementaTempo().toString());
+            view.getTempo().setText(model.incrementaTempo());
         };                
         view.getIncrementa().addActionListener(incrementa);
 

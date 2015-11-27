@@ -7,6 +7,7 @@ package negocio;
 
 import java.math.BigDecimal;
 import java.sql.Time;
+import java.time.LocalTime;
 import persistencia.CartaoDAOXML;
 
 /**
@@ -39,15 +40,15 @@ public class Facade {
         return "Pagamento aceito. Imprimindo ticket";
     }
 
-    public Time decrementaTempo() {
+    public String decrementaTempo() {
         return proc.decrementaTempo();
     }
     
-    public Time getTempoMinimo(){
+    public String getTempoMinimo(){
         return proc.getTempoMinimo();
     }
 
-    public Time incrementaTempo() {
+    public String incrementaTempo() {
         return proc.incrementaTempo();
     }
 
