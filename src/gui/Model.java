@@ -50,8 +50,9 @@ public class Model {
     
     public void clear(){
         String[] s = f.getMinimos();
-        valor = s[1];
+        System.out.println(s[0] + "   " + s[1]);
         tempo = s[0];
+        valor = s[1];
     }
     
     public Facade getFacade() {
