@@ -7,6 +7,7 @@ package negocio;
 
 import java.math.BigDecimal;
 import java.sql.Time;
+import java.time.LocalTime;
 
 /**
  *
@@ -14,83 +15,78 @@ import java.sql.Time;
  */
 public class Processamento {
 
-    private Time tempo;
+    private LocalTime tempo;
     private Pagamento pag;
     private Parquimetro parquim;
     private double valorPagamento;
-    private Time tempoMax;
-    private Time tempoMin;
+    private LocalTime tempoMax;
+    private LocalTime tempoMin;
     private int aux;
     private int numTick;
+    private LocalTime incremento;
 
     public Processamento(Parquimetro parq, int numerTick) {
-        tempo = Time.valueOf("00:00:00");
+        tempo = LocalTime.parse("00:00:00");
         parquim = parq;
         valorPagamento = 0.00;
-        tempoMax = parquim.getTempoMax();
-        tempoMin = parquim.getTempoMin();
+        tempoMax = parquim.getTempoMax().toLocalTime();        
+        tempoMin = parquim.getTempoMin().toLocalTime();
         aux = 0;
         numTick = numerTick;
+        incremento = parquim.getIncremento().toLocalTime();
     }
 
     public Time incrementaTempo() {
-        long auxMilis = tempo.getTime() + parquim.getIncremento().getTime();
-        Time aux = Time.valueOf("00:00:00");
-        aux.setTime(auxMilis);
-
-        if (!aux.after(tempoMax)) {
-            tempo.setTime(tempo.getTime() + parquim.getIncremento().getTime());
-            valorPagamento += parquim.getValorIncremento();
-            return tempo;
-        } else {
-            return tempo;
-        }
+        
+        System.out.println(incremento);
+        System.out.println(tempo.plusSeconds(incremento.toSecondOfDay()));
+        
+        
+        return Time.valueOf(tempo);
     }
 
     public Time decrementaTempo() {
-        long auxMilis = tempo.getTime() - parquim.getIncremento().getTime();
-        Time aux = Time.valueOf("00:00:00");
-        aux.setTime(auxMilis);
-
-        if (!aux.before(tempoMin)) {
-            tempo.setTime(tempo.getTime() - parquim.getIncremento().getTime());
-            valorPagamento += parquim.getValorIncremento();
-            return tempo;
-        } else {
-            return tempo;
-        }
+//        long auxMilis = tempo.getTime() - parquim.getIncremento().getTime();
+//        Time aux = Time.valueOf("00:00:00");
+//        aux.setTime(auxMilis);
+//
+//        if (!aux.before(tempoMin)) {
+//            tempo.setTime(tempo.getTime() - parquim.getIncremento().getTime());
+//            valorPagamento += parquim.getValorIncremento();
+//            return tempo;
+//        } else {
+//            return tempo;
+//        }
+        return null;
     }
 
-    public boolean insereMoeada(BigDecimal vMoeda) {
-        System.out.println(vMoeda);
-        
+    public boolean insereMoeada(BigDecimal vMoeda) {        
         if (aux == 0) {
             pag = new PagamentoMoeda(parquim);
         }
         aux = 1;
 
-        for (Moeda m : parquim.getMoedas()) {
+        for (Moeda m : parquim.getMoedas()) {            
             if (m.valor() == vMoeda.doubleValue()) {
                return pag.recebe(m);
-            } else {
-                return false;
-            }
+            } 
         }
         return false;
     }
 
     public String paga() {
-        String troco = "";
-        if (pag.getValor() - valorPagamento == 0) {
-            Emissao tick = new Emissao(tempo, valorPagamento, parquim, numTick);
-            return "Pagamento aceito.";
-        } else if (pag.getValor() - valorPagamento < 0) {
-            return "Pagamento insuficiente";
-        } else if (pag.getValor() - valorPagamento > 0) {
-            troco = "Pagamento aceito. Troco: ";
-            //fazer logica do troco
-        }
-        return troco;
+//        String troco = "";
+//        if (pag.getValor() - valorPagamento == 0) {
+//            Emissao tick = new Emissao(tempo,numTick, valorPagamento, parquim);
+//            return "Pagamento aceito.";
+//        } else if (pag.getValor() - valorPagamento < 0) {
+//            return "Pagamento insuficiente";
+//        } else if (pag.getValor() - valorPagamento > 0) {
+//            troco = "Pagamento aceito. Troco: ";
+//            //fazer logica do troco
+//        }
+//        return troco;
+        return null;
     }
 
     public double getValorPagamento() {
