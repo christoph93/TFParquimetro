@@ -30,10 +30,12 @@ public class Model {
     }
     
     public Time incrementaTempo() {
+        System.out.println(f.incrementaTempo());
        return f.incrementaTempo();
     }
     
     public Time decrementaTempo() {
+        System.out.println(f.decrementaTempo());
        return f.decrementaTempo();
     }
     

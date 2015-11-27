@@ -19,22 +19,23 @@ public class Facade {
     private CartaoDAOXML daoC;
     private Processamento proc;
     private Parquimetro parquim;
-    private int numeracaoTickets;
-
-    public Facade(Parquimetro parq) {
-        numeracaoTickets = 0;
-        daoC = new CartaoDAOXML();
-        proc = new Processamento(parq, numeracaoTickets);
+    private int numercaoTicket = 0;
+   
         
+    public Facade(Parquimetro parq) {
+        daoC = new CartaoDAOXML();
+        proc = new Processamento(parq, numercaoTicket);
     }
 
     public String cancela() {
-        proc = new Processamento(parquim, numeracaoTickets);
+        proc = new Processamento(parquim, numercaoTicket);
         return "Retornando moedas";
     }
 
     public String imprime() {
-        numeracaoTickets++;
+        //if aceitou pagamento
+        numercaoTicket++;
+        cancela();
         return "Pagamento aceito. Imprimindo ticket";
     }
 
