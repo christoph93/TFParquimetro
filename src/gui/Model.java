@@ -55,6 +55,14 @@ public class Model {
         valor = s[1];
     }
     
+    public String imprime(){
+        return f.imprime();
+    }
+    
+    public String passaCartao(){
+        return f.passaCartao();
+    }
+    
     public Facade getFacade() {
         return f;
     } 

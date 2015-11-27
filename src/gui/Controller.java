@@ -53,7 +53,6 @@ public class Controller {
             System.out.println("Teste R$1.00!");
             setCartaoEnable(Boolean.FALSE);
             view.getConsole().setText(view.getConsole().getText() + "\n" + model.setValor(BigDecimal.valueOf(1.00)));
-            view.getValor().setText(model.getValor().toString());
         };
         view.getBtUm().addActionListener(btUm);
 
@@ -61,6 +60,7 @@ public class Controller {
             System.out.println("Teste Imprimir!");
             setMoedaEnable(Boolean.TRUE);
             setCartaoEnable(Boolean.TRUE);
+            view.getConsole().setText(view.getConsole().getText() + "\n" + model.imprime());
         };
         view.getBtImprimir().addActionListener(btImprimir);
 
@@ -76,7 +76,6 @@ public class Controller {
             System.out.println("Teste R$0.10!");
             setCartaoEnable(Boolean.FALSE);
             view.getConsole().setText(view.getConsole().getText() + "\n" + model.setValor(BigDecimal.valueOf(0.10)));
-            view.getValor().setText(model.getValor().toString());
         };
         view.getBtDez().addActionListener(btDez);
 
@@ -84,7 +83,6 @@ public class Controller {
             System.out.println("Teste R$0.50!");
             setCartaoEnable(Boolean.FALSE);
             view.getConsole().setText(view.getConsole().getText() + "\n" + model.setValor(BigDecimal.valueOf(0.50)));
-            view.getValor().setText(model.getValor().toString());
         };
         view.getBtCinq().addActionListener(btCinq);
 
@@ -92,7 +90,6 @@ public class Controller {
             System.out.println("Teste R$0.25!");
             setCartaoEnable(Boolean.FALSE);
             view.getConsole().setText(view.getConsole().getText() + "\n" + model.setValor(BigDecimal.valueOf(0.25)));
-            view.getValor().setText(model.getValor().toString());
         };
         view.getBtQuarter().addActionListener(btQuarter);
 
@@ -100,13 +97,13 @@ public class Controller {
             System.out.println("Teste R$0.05!");
             setCartaoEnable(Boolean.FALSE);
             view.getConsole().setText(view.getConsole().getText() + "\n" + model.setValor(BigDecimal.valueOf(0.05)));
-            view.getValor().setText(model.getValor().toString());
         };
         view.getBtCinco().addActionListener(btCinco);
 
         btCartao = (ActionEvent actionEvent) -> {
             System.out.println("Teste Cartão");
             setMoedaEnable(Boolean.FALSE);
+            view.getConsole().setText("\n" + model.passaCartao());
         };
         view.getBtCartao().addActionListener(btCartao);
     }
