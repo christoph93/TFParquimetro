@@ -30,7 +30,7 @@ public class Model {
     }
     
     public Time incrementaTempo() {
-        System.out.println(f.incrementaTempo());
+        //System.out.println(f.incrementaTempo());
        return f.incrementaTempo();
     }
     

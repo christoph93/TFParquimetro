@@ -42,6 +42,10 @@ public class Facade {
     public Time decrementaTempo() {
         return proc.decrementaTempo();
     }
+    
+    public Time getTempoMinimo(){
+        return proc.getTempoMinimo();
+    }
 
     public Time incrementaTempo() {
         return proc.incrementaTempo();

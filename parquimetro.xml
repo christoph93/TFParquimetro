@@ -14,8 +14,8 @@
 		<valorIncremento>0.25</valorIncremento>
 		<CINCO>Y</CINCO>
 		<DEZ>Y</DEZ>
-		<VINTEECINCO>Y</VINTEECINCO>
-		<CINQUENTA>Y</CINQUENTA>
+		<VINTEECINCO>N</VINTEECINCO>
+		<CINQUENTA>N</CINQUENTA>
 		<CEM>Y</CEM>		
 	</parquimetro>
 </parq>

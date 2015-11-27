@@ -7,7 +7,6 @@ package negocio;
 
 import java.math.BigDecimal;
 import java.sql.Time;
-import java.time.LocalTime;
 
 /**
  *
@@ -15,61 +14,84 @@ import java.time.LocalTime;
  */
 public class Processamento {
 
-    private LocalTime tempo;
+    private Time tempo;
     private Pagamento pag;
     private Parquimetro parquim;
     private double valorPagamento;
-    private LocalTime tempoMax;
-    private LocalTime tempoMin;
+    private Time tempoMax;
+    private Time tempoMin;
     private int aux;
     private int numTick;
-    private LocalTime incremento;
+    private Time incremento;
 
     public Processamento(Parquimetro parq, int numerTick) {
-        tempo = LocalTime.parse("00:00:00");
+        tempo = parq.getTempoMin();
         parquim = parq;
-        valorPagamento = 0.00;
-        tempoMax = parquim.getTempoMax().toLocalTime();        
-        tempoMin = parquim.getTempoMin().toLocalTime();
+        
+        tempoMax = parquim.getTempoMax();
+        tempoMin = parquim.getTempoMin();
         aux = 0;
         numTick = numerTick;
-        incremento = parquim.getIncremento().toLocalTime();
+        incremento = parquim.getIncremento();
+        valorPagamento = calculaValorPorTempo();
+    }
+    
+    
+    public double calculaValorPorTempo(){
+        Time a1 = Time.valueOf("00:00:00");
+        long aux = System.currentTimeMillis();
+                
+        a1.setTime(aux);
+        System.out.println(a1);
+        
+        
+        return 0;
     }
 
     public Time incrementaTempo() {
-        
-        System.out.println(incremento);
-        System.out.println(tempo.plusSeconds(incremento.toSecondOfDay()));
-        
-        
-        return Time.valueOf(tempo);
+        Time aux = Time.valueOf("00:00:00");
+        aux.setTime(tempo.getTime());
+        aux.setMinutes(aux.getMinutes() + incremento.getMinutes());
+
+
+        if (aux.compareTo(tempoMax) <= 0) {
+            tempo.setHours(aux.getHours());
+            tempo.setMinutes(aux.getMinutes());
+            valorPagamento += parquim.getValorIncremento();
+            System.out.println("tempo se passou: " + tempo);
+        }
+
+        return tempo;
+    }
+    
+    public Time getTempoMinimo(){
+        return parquim.getTempoMin();
     }
 
     public Time decrementaTempo() {
-//        long auxMilis = tempo.getTime() - parquim.getIncremento().getTime();
-//        Time aux = Time.valueOf("00:00:00");
-//        aux.setTime(auxMilis);
-//
-//        if (!aux.before(tempoMin)) {
-//            tempo.setTime(tempo.getTime() - parquim.getIncremento().getTime());
-//            valorPagamento += parquim.getValorIncremento();
-//            return tempo;
-//        } else {
-//            return tempo;
-//        }
-        return null;
+        Time aux = Time.valueOf("00:00:00");
+        aux.setTime(tempo.getTime());
+        aux.setMinutes(aux.getMinutes() - incremento.getMinutes());
+          
+        if (aux.compareTo(tempoMin) >= 0) {
+            tempo.setHours(aux.getHours());
+            tempo.setMinutes(aux.getMinutes());
+            valorPagamento -= parquim.getValorIncremento();
+            System.out.println("tempo se passou: " + tempo);
+        }
+        return tempo;
     }
 
-    public boolean insereMoeada(BigDecimal vMoeda) {        
+    public boolean insereMoeada(BigDecimal vMoeda) {
         if (aux == 0) {
             pag = new PagamentoMoeda(parquim);
         }
         aux = 1;
 
-        for (Moeda m : parquim.getMoedas()) {            
+        for (Moeda m : parquim.getMoedas()) {
             if (m.valor() == vMoeda.doubleValue()) {
-               return pag.recebe(m);
-            } 
+                return pag.recebe(m);
+            }
         }
         return false;
     }
