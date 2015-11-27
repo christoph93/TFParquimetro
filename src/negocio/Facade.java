@@ -21,8 +21,7 @@ public class Facade {
     private Processamento proc;
     private Parquimetro parquim;
     private int numercaoTicket = 0;
-   
-        
+
     public Facade(Parquimetro parq) {
         daoC = new CartaoDAOXML();
         proc = new Processamento(parq, numercaoTicket);
@@ -33,18 +32,22 @@ public class Facade {
         return "Retornando moedas";
     }
 
+    //somente para pagamento com moeda
     public String imprime() {
-        //if aceitou pagamento
-        numercaoTicket++;
-        cancela();
-        return "Pagamento aceito. Imprimindo ticket";
+        String aux = proc.paga();
+        if (aux == null) {
+            return "pagamento não encontrado";
+        } else {
+            numercaoTicket++;
+            return aux;
+        }
     }
 
     public String[] decrementaTempo() {
         return proc.decrementaTempo();
     }
-    
-    public String[] getMinimos(){
+
+    public String[] getMinimos() {
         return proc.getMinimos();
     }
 
@@ -56,9 +59,9 @@ public class Facade {
         return proc.insereMoeada(moeda);
     }
 
-    public boolean pagaComCartao() {
-        cart = daoC.getCartao();
-        return proc.pagaComCartao(cart);
+    public String passaCartao() {
+        System.out.println(proc.paga(daoC.getCartao()));
+        return proc.paga(daoC.getCartao());
     }
 
 }

@@ -7,7 +7,7 @@ package negocio;
 
 import java.math.BigDecimal;
 import java.time.*;
-import persistencia.CartaoDAOXML;
+
 
 /**
  *
@@ -96,24 +96,19 @@ public class Processamento {
         return false;
     }
 
-    public String paga() {
-        CartaoDAOXML daoC = new CartaoDAOXML();
-        Cartao ca = daoC.getCartao();
+    
+    //paga com moedas
+    public String paga() {   
         if (aux == 2) {
-            boolean aceitou = pagaComCartao(ca);
-            if (aceitou) {
-                return "pagamento com cartão aceito";
-            } else {
-                return "saldo no cartão é insuficiente";
-            }
-        } else if (aux == 1) {
+            return null;
+            } else if (aux == 1) {
             if (pag.getValor().compareTo(valorTicket) >= 0) {
                 return "pagamento aceito, retornando [troco]";
             } else {
                 return "pagamento insuficiente";
             }
         }
-        return "pagamento não encontrado";
+        return null;
 
     }
 
@@ -121,16 +116,21 @@ public class Processamento {
         return valorTicket;
     }
 
-    boolean pagaComCartao(Cartao cart) {
+    public String paga(Cartao cart) {
         if (aux == 0) {
             pag = new PagamentoCartao(cart, valorTicket);
             aux = 2;
-            return pag.recebe();
+            boolean aceitou = pag.recebe();
+            if(aceitou){
+                return "pagamento com cartão aceito";
+            } else{
+                return "saldo do cartao insuficiente";
+            }
         } else if (aux == 2) {
-            return false;
+            return "está pagando com moedas. cancele";
         }
 
-        return false;
+        return "pagamento não aceito";
     }
 
 }
