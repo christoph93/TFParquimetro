@@ -8,32 +8,34 @@ package gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.math.BigDecimal;
+
 /**
  *
  * @author ccalifi
  */
-public class Controller{
+public class Controller {
+
     private Model model;
     private View view;
-    private ActionListener incrementa,btCancelar,btUm,btImprimir,btDecrementa,btDez,btCinq,btQuarter,btCinco,btCartao;
-    
-    public void associaModel(Model m){
+    private ActionListener incrementa, btCancelar, btUm, btImprimir, btDecrementa, btDez, btCinq, btQuarter, btCinco, btCartao;
+
+    public void associaModel(Model m) {
         model = m;
     }
-    
+
     public void associaView(View v) {
         view = v;
         view.getTempo().setText(model.getTempo());
         view.getValor().setText(model.getValor());
     }
-   
+
     public void setUpViewEvents() {
         incrementa = (ActionEvent actionEvent) -> {
             System.out.println("Teste incrementa!");
             String[] aux = model.incrementaTempo();
             view.getTempo().setText(aux[0]);
             view.getValor().setText(aux[1]);
-        };                
+        };
         view.getIncrementa().addActionListener(incrementa);
 
         btCancelar = (ActionEvent actionEvent) -> {
@@ -41,10 +43,10 @@ public class Controller{
             setMoedaEnable(Boolean.TRUE);
             setCartaoEnable(Boolean.TRUE);
             model.clear();
-            view.getTempo().setText(model.getTempo().toString());
-            view.getValor().setText(model.getValor().toString());
+            view.getTempo().setText(model.getTempo());
+            view.getValor().setText(model.getValor());
             view.getConsole().setText(null);
-        };                
+        };
         view.getBtCancelar().addActionListener(btCancelar);
 
         btUm = (ActionEvent actionEvent) -> {
@@ -52,70 +54,72 @@ public class Controller{
             setCartaoEnable(Boolean.FALSE);
             view.getConsole().setText(view.getConsole().getText() + "\n" + model.setValor(BigDecimal.valueOf(1.00)));
             view.getValor().setText(model.getValor().toString());
-        };                
+        };
         view.getBtUm().addActionListener(btUm);
-        
+
         btImprimir = (ActionEvent actionEvent) -> {
             System.out.println("Teste Imprimir!");
             setMoedaEnable(Boolean.TRUE);
             setCartaoEnable(Boolean.TRUE);
-        };                
+        };
         view.getBtImprimir().addActionListener(btImprimir);
-        
+
         btDecrementa = (ActionEvent actionEvent) -> {
             System.out.println("Teste decrementa!");
-            view.getTempo().setText(model.decrementaTempo()[0]);            
-        };                
+            String[] aux = model.decrementaTempo();
+            view.getTempo().setText(aux[0]);
+            view.getValor().setText(aux[1]);
+        };
         view.getBtDecrementa().addActionListener(btDecrementa);
-        
+
         btDez = (ActionEvent actionEvent) -> {
             System.out.println("Teste R$0.10!");
             setCartaoEnable(Boolean.FALSE);
             view.getConsole().setText(view.getConsole().getText() + "\n" + model.setValor(BigDecimal.valueOf(0.10)));
             view.getValor().setText(model.getValor().toString());
-        };                
+        };
         view.getBtDez().addActionListener(btDez);
-        
+
         btCinq = (ActionEvent actionEvent) -> {
             System.out.println("Teste R$0.50!");
             setCartaoEnable(Boolean.FALSE);
             view.getConsole().setText(view.getConsole().getText() + "\n" + model.setValor(BigDecimal.valueOf(0.50)));
             view.getValor().setText(model.getValor().toString());
-        };                
+        };
         view.getBtCinq().addActionListener(btCinq);
-        
+
         btQuarter = (ActionEvent actionEvent) -> {
             System.out.println("Teste R$0.25!");
             setCartaoEnable(Boolean.FALSE);
             view.getConsole().setText(view.getConsole().getText() + "\n" + model.setValor(BigDecimal.valueOf(0.25)));
             view.getValor().setText(model.getValor().toString());
-        };                
+        };
         view.getBtQuarter().addActionListener(btQuarter);
-        
+
         btCinco = (ActionEvent actionEvent) -> {
             System.out.println("Teste R$0.05!");
             setCartaoEnable(Boolean.FALSE);
             view.getConsole().setText(view.getConsole().getText() + "\n" + model.setValor(BigDecimal.valueOf(0.05)));
             view.getValor().setText(model.getValor().toString());
-        };                
+        };
         view.getBtCinco().addActionListener(btCinco);
-        
+
         btCartao = (ActionEvent actionEvent) -> {
             System.out.println("Teste Cartão");
             setMoedaEnable(Boolean.FALSE);
-        };                
-        view.getBtCartao().addActionListener(btCartao);        
+        };
+        view.getBtCartao().addActionListener(btCartao);
     }
-    
-    public void setCartaoEnable(Boolean t){
+
+    public void setCartaoEnable(Boolean t) {
         view.getBtCartao().setEnabled(t);
     }
-    
-    public void setMoedaEnable(Boolean t){
+
+    public void setMoedaEnable(Boolean t) {
         view.getBtCinco().setEnabled(t);
         view.getBtCinq().setEnabled(t);
         view.getBtDez().setEnabled(t);
         view.getBtQuarter().setEnabled(t);
-        view.getBtUm().setEnabled(t);        
+        view.getBtUm().setEnabled(t);
     }
 }

@@ -44,7 +44,7 @@ public class Processamento {
     public String[] incrementaTempo() {
         if (tempo.plus(incremento).compareTo(tempoMax) <= 0) {
             tempo = tempo.plus(incremento);
-            calculaValorPorTempo();
+            valorPagamento = calculaValorPorTempo();
         }
 
         long aux = tempo.getSeconds();
@@ -61,15 +61,15 @@ public class Processamento {
         String t = String.format("%d:%02d:%02d",
                 aux / 3600,
                 (aux % 3600) / 60,
-                aux % 60); 
-        String[] s = {t,valorPagamento.toString()};
+                aux % 60);
+        String[] s = {t, valorPagamento.toString()};
         return s;
     }
 
     public String[] decrementaTempo() {
         if (tempo.minus(incremento).compareTo(tempoMin) >= 0) {
             tempo = tempo.minus(incremento);
-            calculaValorPorTempo();
+            valorPagamento = calculaValorPorTempo();
         }
         long aux = tempo.getSeconds();
         String t = String.format("%d:%02d:%02d",
