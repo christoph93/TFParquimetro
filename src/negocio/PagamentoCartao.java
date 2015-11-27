@@ -5,6 +5,7 @@
  */
 package negocio;
 
+import java.math.BigDecimal;
 import persistencia.CartaoDAOXML;
 
 /**
@@ -13,24 +14,36 @@ import persistencia.CartaoDAOXML;
  */
 public class PagamentoCartao implements Pagamento {
 
-    private double valorTotal;
-    private Cartao cart; 
-
-    public PagamentoCartao(Cartao ca) {
+    private BigDecimal valorPagamento;
+    private Cartao cart;
+    private BigDecimal valorTicket;
+    private CartaoDAOXML daoC;
+    
+    public PagamentoCartao(Cartao ca, BigDecimal valor) {
         cart = ca;
+        valorTicket = valor;
+         daoC = new CartaoDAOXML();
     }
 
     @Override
     public boolean recebe() {
-        if (cart.getTipo().equalsIgnoreCase("residente")){
-            
+        if (cart.getTipo().equalsIgnoreCase("residente")) {
+            valorPagamento = valorTicket;
+            return true;
+        } else if (cart.getTipo().equalsIgnoreCase("prepago")){
+            if (cart.getSaldo().compareTo(valorTicket) >= 0){
+                valorPagamento = valorTicket;
+                daoC.setSaldo(cart.getCodigo(), cart.getSaldo().subtract(valorPagamento).toPlainString());
+                return true;
+            }           
+            return false; 
         }
         return false;
     }
 
     @Override
-    public double getValor() {
-        return valorTotal;
+    public BigDecimal getValor() {
+        return valorPagamento;
     }
 
     @Override

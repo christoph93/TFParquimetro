@@ -20,7 +20,7 @@ public interface CartaoDAO {
     
     public void addcartao(Cartao cart);
     
-    public boolean  setSaldo(String codigoCartao, double valor);
+    public void  setSaldo(String codigoCartao, String valor);
     
     public List<Cartao> getCartoes();
     

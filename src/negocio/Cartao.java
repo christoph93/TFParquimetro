@@ -10,6 +10,7 @@ package negocio;
  * @author ccalifi
  */
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 
@@ -18,11 +19,11 @@ public class Cartao {
     StringBuilder sb = new StringBuilder();
     
     private String codigo;
-    private double saldo;
+    private BigDecimal saldo;
     private String tipo;
     
     
-    public Cartao(String codigo, double saldo, String t){
+    public Cartao(String codigo, BigDecimal saldo, String t){
         this.codigo = codigo;
         this.saldo = saldo;
         tipo = t;
@@ -41,11 +42,11 @@ public class Cartao {
         return codigo;
     }
             
-    public double getSaldo() {
+    public BigDecimal getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(double saldo) {
+    public void setSaldo(BigDecimal saldo) {
         this.saldo = saldo;
     }
 

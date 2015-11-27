@@ -8,6 +8,7 @@ package persistencia;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -56,12 +57,12 @@ public class CartaoDAOXML implements CartaoDAO {
         Cartao c = null;
 
         String cod, tipo;
-        double saldo;
+        BigDecimal saldo;
 
         for (Element e : listaCartoes) {
             if (codigo.equals(e.getAttribute("codigo").getValue())) {
                 cod = e.getAttribute("codigo").getValue();
-                saldo = Double.parseDouble(e.getChild("saldo").getValue());
+                saldo = new BigDecimal(e.getChild("saldo").getValue());
                 tipo = e.getChild("tipo").getValue();
                 c = new Cartao(cod, saldo, tipo);
                 return c;
@@ -100,14 +101,12 @@ public class CartaoDAOXML implements CartaoDAO {
     }
 
     @Override
-    public boolean setSaldo(String codigoCartao, double valor) {
+    public void setSaldo(String codigoCartao, String valor) {
         for (Element e : listaCartoes) {
             if (codigoCartao.equals(e.getAttribute("codigo").getValue())) {
-                e.getChild("saldo").setText(String.valueOf(valor));
-                return true;
+                e.getChild("saldo").setText(String.valueOf(valor));                
             }
-        }
-        return false;
+        }        
     }
 
     @Override
@@ -118,7 +117,7 @@ public class CartaoDAOXML implements CartaoDAO {
             
             Cartao c = new Cartao(
                     e.getAttribute("codigo").getValue(),
-                    Double.parseDouble(e.getChild("saldo").getValue()),
+                    new BigDecimal(e.getChild("saldo").getValue()),
                     e.getChild("tipo").getValue());
             cartoes.add(c);
         }

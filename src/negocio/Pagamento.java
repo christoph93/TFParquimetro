@@ -5,6 +5,8 @@
  */
 package negocio;
 
+import java.math.BigDecimal;
+
 
 
 
@@ -14,7 +16,7 @@ package negocio;
  */
 public interface Pagamento {
     
-    public double getValor();
+    public BigDecimal getValor();
     
     public boolean recebe();
     

@@ -7,6 +7,7 @@ package negocio;
 
 import java.math.BigDecimal;
 import java.time.*;
+import persistencia.CartaoDAOXML;
 
 /**
  *
@@ -17,7 +18,7 @@ public class Processamento {
     private Duration tempo;
     private Pagamento pag;
     private Parquimetro parquim;
-    private BigDecimal valorPagamento;
+    private BigDecimal valorTicket;
     private Duration tempoMax;
     private Duration tempoMin;
     private int aux;
@@ -27,13 +28,12 @@ public class Processamento {
     public Processamento(Parquimetro parq, int numerTick) {
         tempo = parq.getTempoMin();
         parquim = parq;
-
         tempoMax = parquim.getTempoMax();
         tempoMin = parquim.getTempoMin();
         aux = 0;
         numTick = numerTick;
         incremento = parquim.getIncremento();
-        valorPagamento = calculaValorPorTempo();
+        valorTicket = calculaValorPorTempo();
     }
 
     public BigDecimal calculaValorPorTempo() {
@@ -44,7 +44,7 @@ public class Processamento {
     public String[] incrementaTempo() {
         if (tempo.plus(incremento).compareTo(tempoMax) <= 0) {
             tempo = tempo.plus(incremento);
-            valorPagamento = calculaValorPorTempo();
+            valorTicket = calculaValorPorTempo();
         }
 
         long aux = tempo.getSeconds();
@@ -52,7 +52,7 @@ public class Processamento {
                 aux / 3600,
                 (aux % 3600) / 60,
                 aux % 60);
-        String[] a = {t, valorPagamento.toString()};
+        String[] a = {t, valorTicket.toString()};
         return a;
     }
 
@@ -62,21 +62,23 @@ public class Processamento {
                 aux / 3600,
                 (aux % 3600) / 60,
                 aux % 60);
-        String[] s = {t, valorPagamento.toString()};
+        double aux2 = parquim.getTempoMin().getSeconds() / incremento.getSeconds();
+        BigDecimal a = new BigDecimal((int) aux2 * parquim.getValorIncremento());
+        String[] s = {t, a.toString()};
         return s;
     }
 
     public String[] decrementaTempo() {
         if (tempo.minus(incremento).compareTo(tempoMin) >= 0) {
             tempo = tempo.minus(incremento);
-            valorPagamento = calculaValorPorTempo();
+            valorTicket = calculaValorPorTempo();
         }
         long aux = tempo.getSeconds();
         String t = String.format("%d:%02d:%02d",
                 aux / 3600,
                 (aux % 3600) / 60,
                 aux % 60);
-        String[] a = {t, String.valueOf(valorPagamento)};
+        String[] a = {t, String.valueOf(valorTicket)};
         return a;
     }
 
@@ -95,33 +97,40 @@ public class Processamento {
     }
 
     public String paga() {
-//        String troco = "";
-//        if (pag.getValor() - valorPagamento == 0) {
-//            Emissao tick = new Emissao(tempo, numTick, valorPagamento, parquim);
-//            return "Pagamento aceito.";
-//        } else if (pag.getValor() - valorPagamento < 0) {
-//            return "Pagamento insuficiente";
-//        } else if (pag.getValor() - valorPagamento > 0) {
-//            troco = "Pagamento aceito. Troco: ";
-//            //fazer logica do troco
-//        }
-//        return troco;
-        return null;
+        CartaoDAOXML daoC = new CartaoDAOXML();
+        Cartao ca = daoC.getCartao();
+        if (aux == 2) {
+            boolean aceitou = pagaComCartao(ca);
+            if (aceitou) {
+                return "pagamento com cartão aceito";
+            } else {
+                return "saldo no cartão é insuficiente";
+            }
+        } else if (aux == 1) {
+            if (pag.getValor().compareTo(valorTicket) >= 0) {
+                return "pagamento aceito, retornando [troco]";
+            } else {
+                return "pagamento insuficiente";
+            }
+        }
+        return "pagamento não encontrado";
+
     }
 
     public BigDecimal getValorPagamento() {
-        return valorPagamento;
+        return valorTicket;
     }
 
     boolean pagaComCartao(Cartao cart) {
         if (aux == 0) {
-            pag = new PagamentoCartao(cart);
-        } else {
+            pag = new PagamentoCartao(cart, valorTicket);
+            aux = 2;
+            return pag.recebe();
+        } else if (aux == 2) {
             return false;
         }
 
-        return pag.recebe();
-
+        return false;
     }
 
 }
