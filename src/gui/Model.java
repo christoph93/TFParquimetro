@@ -6,57 +6,55 @@
 package gui;
 
 import java.math.BigDecimal;
-import java.sql.Time;
 import negocio.Facade;
 import negocio.Parquimetro;
 
 public class Model {        
     
     private Controller c;
-    private Time tempo = Time.valueOf("00:00:00");
-    private BigDecimal valor = new BigDecimal(0);
+    private String tempo;
+    private String valor;
     private Facade f;
+    
+    public Model(Parquimetro p){
+        f = new Facade(p);
+        String[] s = f.getMinimos();
+        tempo = s[0];
+        valor = s[1];
+    }
 
     public String setValor(BigDecimal v){
         if(f.insereMoeda(v)){
-         valor = valor.add(v);
          return "Moeda inserida: " + v;
         }
         return "Moeda não aceita! Retornando valor: R$" + v;
     }
     
-    public BigDecimal getValor() {
+    public String getValor() {
         return valor;
     }
     
-    public String incrementaTempo() {
+    public String[] incrementaTempo() {
         //System.out.println(f.incrementaTempo());
        return f.incrementaTempo();
     }
     
-    public String decrementaTempo() {
+    public String[] decrementaTempo() {
         //System.out.println(f.decrementaTempo());
        return f.decrementaTempo();
     }
     
-    public Time getTempo(){
+    public String getTempo(){
         return tempo;
     }
     
     public void clear(){
-        valor = new BigDecimal(0);
-        tempo = Time.valueOf("00:00:00");
+        String[] s = f.getMinimos();
+        valor = s[1];
+        tempo = s[0];
     }
     
     public Facade getFacade() {
         return f;
-    }
-
-    public void setFacade(Parquimetro p) {
-        if(f == null){
-            f = new Facade(p);
-        }
-    }
-    
-    
+    } 
 }

@@ -17,7 +17,7 @@ public class Processamento {
     private Duration tempo;
     private Pagamento pag;
     private Parquimetro parquim;
-    private double valorPagamento;
+    private BigDecimal valorPagamento;
     private Duration tempoMax;
     private Duration tempoMin;
     private int aux;
@@ -36,9 +36,9 @@ public class Processamento {
         valorPagamento = calculaValorPorTempo();
     }
 
-    public double calculaValorPorTempo() {
+    public BigDecimal calculaValorPorTempo() {
         double aux = tempo.getSeconds() / incremento.getSeconds();
-        return (int) aux * parquim.getValorIncremento();
+        return new BigDecimal((int) aux * parquim.getValorIncremento());
     }
 
     public String[] incrementaTempo() {
@@ -52,12 +52,18 @@ public class Processamento {
                 aux / 3600,
                 (aux % 3600) / 60,
                 aux % 60);
-        String[] a = {t, String.valueOf(valorPagamento)};
+        String[] a = {t, valorPagamento.toString()};
         return a;
     }
 
-    public String getTempoMinimo() {
-        return parquim.getTempoMin().toString();
+    public String[] getMinimos() {
+        long aux = parquim.getTempoMin().getSeconds();
+        String t = String.format("%d:%02d:%02d",
+                aux / 3600,
+                (aux % 3600) / 60,
+                aux % 60); 
+        String[] s = {t,valorPagamento.toString()};
+        return s;
     }
 
     public String[] decrementaTempo() {
@@ -100,9 +106,10 @@ public class Processamento {
 //            //fazer logica do troco
 //        }
 //        return troco;
+        return null;
     }
 
-    public double getValorPagamento() {
+    public BigDecimal getValorPagamento() {
         return valorPagamento;
     }
 

@@ -44,8 +44,8 @@ public class Facade {
         return proc.decrementaTempo();
     }
     
-    public String getTempoMinimo(){
-        return proc.getTempoMinimo();
+    public String[] getMinimos(){
+        return proc.getMinimos();
     }
 
     public String[] incrementaTempo() {

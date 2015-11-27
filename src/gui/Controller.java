@@ -23,12 +23,16 @@ public class Controller{
     
     public void associaView(View v) {
         view = v;
+        view.getTempo().setText(model.getTempo());
+        view.getValor().setText(model.getValor());
     }
    
     public void setUpViewEvents() {
         incrementa = (ActionEvent actionEvent) -> {
             System.out.println("Teste incrementa!");
-            view.getTempo().setText(model.incrementaTempo());
+            String[] aux = model.incrementaTempo();
+            view.getTempo().setText(aux[0]);
+            view.getValor().setText(aux[1]);
         };                
         view.getIncrementa().addActionListener(incrementa);
 
@@ -60,7 +64,7 @@ public class Controller{
         
         btDecrementa = (ActionEvent actionEvent) -> {
             System.out.println("Teste decrementa!");
-            view.getTempo().setText(model.decrementaTempo().toString());            
+            view.getTempo().setText(model.decrementaTempo()[0]);            
         };                
         view.getBtDecrementa().addActionListener(btDecrementa);
         

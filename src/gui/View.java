@@ -166,7 +166,6 @@ public class View extends javax.swing.JFrame {
 
         btCartao.setText("Cartão");
 
-        tempo.setText("00:00:00");
         tempo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tempoActionPerformed(evt);
@@ -177,7 +176,6 @@ public class View extends javax.swing.JFrame {
 
         valorLabel.setText("Valor");
 
-        valor.setText("00,00");
         valor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 valorActionPerformed(evt);

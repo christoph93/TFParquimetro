@@ -24,14 +24,15 @@ public class Init {
     
     private static void criarGui() {
         try {
-            Model m = new Model();
-            View v = new View();
-            Controller c = new Controller();
-            
+
             ParquimetroDAOXML daoP = new ParquimetroDAOXML();
             Parquimetro p = daoP.getParquimetro();
+            
+            Model m = new Model(p);
+            View v = new View();
+            Controller c = new Controller();
+
             System.out.println(p);
-            m.setFacade(p);
             
             c.associaModel(m);
             c.associaView(v);
