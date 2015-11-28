@@ -55,8 +55,7 @@ class Emissao {
         try {
             String nomeArquivo = "ticket"+String.valueOf(tick.getNumero())+".txt";
             writer = new PrintWriter(nomeArquivo, "UTF-8");
-            writer.println("The first line");
-            writer.println("The second line");
+           writer.println(tick.toString());
             writer.close();
             } catch (FileNotFoundException ex) {
             Logger.getLogger(Emissao.class.getName()).log(Level.SEVERE, null, ex);
