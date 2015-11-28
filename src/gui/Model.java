@@ -59,6 +59,10 @@ public class Model {
         return f.imprime();
     }
     
+    public String cancela(){
+        return f.cancela();
+    }
+    
     public String passaCartao(){
         return f.passaCartao();
     }

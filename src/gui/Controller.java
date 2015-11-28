@@ -45,7 +45,7 @@ public class Controller {
             model.clear();
             view.getTempo().setText(model.getTempo());
             view.getValor().setText(model.getValor());
-            view.getConsole().setText(null);
+            view.getConsole().setText(model.cancela());
         };
         view.getBtCancelar().addActionListener(btCancelar);
 

@@ -7,6 +7,7 @@ package negocio;
 
 import java.math.BigDecimal;
 import java.time.*;
+import java.util.ArrayList;
 
 
 /**
@@ -24,6 +25,7 @@ public class Processamento {
     private int aux;
     private int numTick;
     private Duration incremento;
+    private ArrayList<Moeda> moedas;
 
     public Processamento(Parquimetro parq, int numerTick) {
         tempo = parq.getTempoMin();
@@ -84,26 +86,38 @@ public class Processamento {
 
     public boolean insereMoeada(BigDecimal vMoeda) {
         if (aux == 0) {
+            moedas = new ArrayList<>();
             pag = new PagamentoMoeda(parquim);
         }
         aux = 1;
 
         for (Moeda m : parquim.getMoedas()) {
+            
             if (m.valor() == vMoeda.doubleValue()) {
+                moedas.add(m);
                 return pag.recebe(m);
             }
         }
         return false;
     }
 
+    public String getMoedasAsString(){
+        String stringMoedas = "";
+        for(Moeda m : moedas){
+            stringMoedas += (" " + m.valor());
+        }
+        return stringMoedas;
+    }
     
     //paga com moedas
     public String paga() {   
+        System.out.println(aux);
         if (aux == 2) {
             return null;
             } else if (aux == 1) {
-            if (pag.getValor().compareTo(valorTicket) >= 0) {
-                return "pagamento aceito, retornando [troco]";
+            if (pag.getValor().compareTo(valorTicket) <= 0) {
+                Emissao em = new Emissao(tempo, numTick, valorTicket , parquim);
+                return "pagamento aceito, retornando [troco]" + "\n" + em.imprimeTicket();
             } else {
                 return "pagamento insuficiente";
             }

@@ -5,8 +5,15 @@
  */
 package negocio;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.sql.Time;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.jdom2.JDOMException;
@@ -22,20 +29,17 @@ class Emissao {
     private TicketDAOXML daoT;
     private Ticket tick;
 
-    public Emissao(Time tempo, int numTicket, double valorPag, Parquimetro parq) {
+    public Emissao(Duration tempo, int numTicket, BigDecimal valorTicket, Parquimetro parq) {
         try {
             daoT = new TicketDAOXML();
-            Time tempoEmiss = Time.valueOf("00:00:00");
-            tempoEmiss.setTime(System.currentTimeMillis());
+            LocalDateTime tempoEmiss = LocalDateTime.now();
 
-            Time tempoValid = Time.valueOf("00:00:00");
-            tempoValid.setTime(tempoEmiss.getTime() + tempo.getTime());
+            LocalDateTime tempoValid = LocalDateTime.of(LocalDate.now(), LocalTime.now().plusSeconds(tempo.getSeconds()));
+            System.out.println(tempoValid);
 
-            tick = new Ticket(parq, parq.getEnder(), numTicket, valorPag, tempoEmiss, tempoValid);
+            tick = new Ticket(parq, parq.getEnder(), numTicket, valorTicket, tempoEmiss, tempoValid);
 
-            daoT.adicionar(tick);
-
-            imprimeTicket();
+            daoT.adicionar(tick);            
 
         } catch (JDOMException ex) {
             Logger.getLogger(Emissao.class.getName()).log(Level.SEVERE, null, ex);
@@ -46,8 +50,21 @@ class Emissao {
         }
     }
 
-    private String imprimeTicket() {
-        //escrever no txt e mandar para inteface
+    public String imprimeTicket() {
+        PrintWriter writer = null;
+        try {
+            String nomeArquivo = "ticket"+String.valueOf(tick.getNumero())+".txt";
+            writer = new PrintWriter(nomeArquivo, "UTF-8");
+            writer.println("The first line");
+            writer.println("The second line");
+            writer.close();
+            } catch (FileNotFoundException ex) {
+            Logger.getLogger(Emissao.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(Emissao.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            writer.close();
+        }
         return tick.toString();
     }
 

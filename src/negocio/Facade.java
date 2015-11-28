@@ -16,20 +16,21 @@ import persistencia.CartaoDAOXML;
  */
 public class Facade {
 
-    private Cartao cart;
     private CartaoDAOXML daoC;
     private Processamento proc;
     private Parquimetro parquim;
-    private int numercaoTicket = 0;
+    private int numercaoTicket = 1;
 
     public Facade(Parquimetro parq) {
         daoC = new CartaoDAOXML();
-        proc = new Processamento(parq, numercaoTicket);
+        parquim = parq;
+        proc = new Processamento(parquim, numercaoTicket);
     }
 
     public String cancela() {
+        String moedas = proc.getMoedasAsString();
         proc = new Processamento(parquim, numercaoTicket);
-        return "Retornando moedas";
+        return "Retornando moedas: " + moedas;
     }
 
     //somente para pagamento com moeda

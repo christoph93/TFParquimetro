@@ -5,49 +5,37 @@
  */
 package negocio;
 
-import java.sql.Time;
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 
-/**
- *
- * @author ccalifi
- */
 public class Ticket {
-    
-// Número de identificação do parquímetro (5 dígitos de tamanho fixo);
-// Endereço do parquímetro;
-// Número serial do tíquete emitido (5 dígitos de tamanho fixo);
-// Data e hora de emissão do tíquete;
-// Data e hora de validade do tíquete.
-    
-    
-    
+
     private final Parquimetro parq;
     private final Endereco endereco;
     private final int codigo;
-    private final Time emissao;
-    private final Time validade;
-    private final double valor;
-    
-    public Ticket(Parquimetro par, Endereco end,int codigo, double valor, Time emiss, Time val){
+    private final LocalDateTime emissao;
+    private final LocalDateTime validade;
+    private final BigDecimal valor;
+
+    public Ticket(Parquimetro par, Endereco end, int codigo, BigDecimal valor, LocalDateTime emiss, LocalDateTime val) {
         this.valor = valor;
         parq = par;
         endereco = end;
         this.codigo = codigo;
         emissao = emiss;
-        validade = val;                
+        validade = val;
     }
-
 
     public Parquimetro getParquimetro() {
         return parq;
     }
 
- 
-    public double getValor() {
+    public BigDecimal getValor() {
         return valor;
     }
-    
-    
+
     public Endereco getEndereco() {
         return endereco;
     }
@@ -56,22 +44,27 @@ public class Ticket {
         return codigo;
     }
 
-    public Time getEmissao() {
+    public LocalDateTime getEmissao() {
         return emissao;
     }
 
-    public Time getValidade() {
+    public LocalDateTime getValidade() {
         return validade;
     }
 
+    // Número de identificação do parquímetro (5 dígitos de tamanho fixo);
+// Endereço do parquímetro;
+// Número serial do tíquete emitido (5 dígitos de tamanho fixo);
+// Data e hora de emissão do tíquete;
+// Data e hora de validade do tíquete.
+    
     @Override
     public String toString() {
-        return "Ticket{" + "parq=" + parq.getCodigo() + ", ticket=" + codigo + ", endereco=" + endereco +  ", emissao=" + emissao + ", validade=" + validade + ", valor=" + valor + '}';
+        return "Parquimetro: " + parq.getCodigo() +
+                "\nEndereço: " + parq.getEnder().toString() +
+                "\nTicket:   " + codigo +
+                "\nEmissão:  " + emissao.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT)) +
+                "\nValidade: " + validade.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT));
     }
 
-    
-    
-    
-    
-    
 }

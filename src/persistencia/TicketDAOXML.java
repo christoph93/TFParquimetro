@@ -9,8 +9,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.SQLException;
-import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -117,9 +119,9 @@ public class TicketDAOXML implements ticketDAO {
                             aux,
                             aux.getEnder(),
                             e.getAttribute("codigo").getIntValue(),
-                            Double.parseDouble(e.getChild("valor").getValue()),
-                            Time.valueOf(e.getChildText("emissao")),
-                            Time.valueOf(e.getChildText("validade")));
+                            new BigDecimal(e.getChild("valor").getValue()),
+                            LocalDateTime.parse(e.getChildText("emissao")),
+                            LocalDateTime.parse(e.getChildText("validade")));
                 }
             }
         } catch (DataConversionException ex) {
@@ -147,9 +149,9 @@ public class TicketDAOXML implements ticketDAO {
                         aux,
                         aux.getEnder(),
                         e.getAttribute("codigo").getIntValue(),
-                        Double.parseDouble(e.getChild("valor").getValue()),
-                        Time.valueOf(e.getChildText("emissao")),
-                        Time.valueOf(e.getChildText("validade")));              
+                        new BigDecimal(e.getChild("valor").getValue()),
+                        LocalDateTime.parse(e.getChildText("emissao")),
+                        LocalDateTime.parse(e.getChildText("validade")));              
                 
                 
                 tickets.add(t);
