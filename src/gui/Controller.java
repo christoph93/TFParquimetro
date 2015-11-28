@@ -17,7 +17,7 @@ public class Controller {
 
     private Model model;
     private View view;
-    private ActionListener incrementa, btCancelar, btUm, btImprimir, btDecrementa, btDez, btCinq, btQuarter, btCinco, btCartao;
+    private ActionListener incrementa, btCancelar, btUm, btImprimir, btDecrementa, btDez, btCinq, btQuarter, btCinco, btCartao, btLogs;
 
     public void associaModel(Model m) {
         model = m;
@@ -106,6 +106,13 @@ public class Controller {
             view.getConsole().setText("\n" + model.passaCartao());
         };
         view.getBtCartao().addActionListener(btCartao);
+        
+        btLogs = (ActionEvent actionEvent) -> {
+            System.out.println("Teste Logs");
+            model.geraLog();
+            view.getConsole().setText("Logs gerados");
+        };
+        view.getBtLogs().addActionListener(btLogs);
     }
 
     public void setCartaoEnable(Boolean t) {

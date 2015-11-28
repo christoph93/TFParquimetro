@@ -61,6 +61,10 @@ public class Facade {
         return proc.insereMoeada(moeda);
     }
 
+    public void geraLog(){
+        proc.geraLog();
+    }
+    
     public String passaCartao() {
         //System.out.println(proc.paga(daoC.getCartao()));
         return proc.paga(daoC.getCartao());

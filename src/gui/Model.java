@@ -34,6 +34,10 @@ public class Model {
         return valor;
     }
     
+    public void geraLog(){
+        f.geraLog();
+    }
+    
     public String[] incrementaTempo() {
         //System.out.println(f.incrementaTempo());
        return f.incrementaTempo();

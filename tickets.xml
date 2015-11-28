@@ -220,4 +220,15 @@
     <estado>Estado E</estado>
     <pais>Pais P</pais>
   </ticket>
+  <ticket codigo="1">
+    <parquimetro>55555</parquimetro>
+    <valor>0.75</valor>
+    <emissao>2015-11-28T15:30:18.304</emissao>
+    <validade>2015-11-28T16:00:18.305</validade>
+    <rua>RuaR</rua>
+    <numero>123123</numero>
+    <cidade>Cidade C</cidade>
+    <estado>Estado E</estado>
+    <pais>Pais P</pais>
+  </ticket>
 </tickets>

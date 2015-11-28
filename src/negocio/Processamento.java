@@ -154,5 +154,10 @@ public class Processamento {
         }
         return "pagamento não aceito";
     }
+    
+    
+    public void geraLog(){
+        //fazer logica dos logs
+    }
 
 }
