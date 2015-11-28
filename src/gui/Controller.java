@@ -60,7 +60,7 @@ public class Controller {
             System.out.println("Teste Imprimir!");
             setMoedaEnable(Boolean.TRUE);
             setCartaoEnable(Boolean.TRUE);
-            view.getConsole().setText(view.getConsole().getText() + "\n" + model.imprime());
+            view.getConsole().setText(model.imprime());
         };
         view.getBtImprimir().addActionListener(btImprimir);
 

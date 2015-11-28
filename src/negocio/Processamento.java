@@ -124,9 +124,10 @@ public class Processamento {
             } else if (aux == 1) {
             if (pag.getValor().compareTo(valorTicket) <= 0) {
                 Emissao em = new Emissao(tempo, numTick, valorTicket , parquim);
-                return "pagamento aceito, retornando [troco]" + "\n" + em.imprimeTicket();
+                return "Pagamento Aceito!"
+                        + "Troco: " + "\n" + em.imprimeTicket();
             } else {
-                return "pagamento insuficiente";
+                return "Pagamento Insuficiente";
             }
         }
         return null;
