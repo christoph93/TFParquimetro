@@ -33,4 +33,191 @@
     <estado>Estado E</estado>
     <pais>Pais P</pais>
   </ticket>
+  <ticket codigo="0">
+    <parquimetro>55555</parquimetro>
+    <valor>0.75</valor>
+    <emissao>01:42:34.840</emissao>
+    <validade>02:12:34</validade>
+    <rua>RuaR</rua>
+    <numero>123123</numero>
+    <cidade>Cidade C</cidade>
+    <estado>Estado E</estado>
+    <pais>Pais P</pais>
+  </ticket>
+  <ticket codigo="1">
+    <parquimetro>55555</parquimetro>
+    <valor>0.75</valor>
+    <emissao>2015-11-28T01:47:08.978</emissao>
+    <validade>2015-11-28T01:47:08.978</validade>
+    <rua>RuaR</rua>
+    <numero>123123</numero>
+    <cidade>Cidade C</cidade>
+    <estado>Estado E</estado>
+    <pais>Pais P</pais>
+  </ticket>
+  <ticket codigo="1">
+    <parquimetro>55555</parquimetro>
+    <valor>0.75</valor>
+    <emissao>2015-11-28T01:47:15.171</emissao>
+    <validade>2015-11-28T01:47:15.171</validade>
+    <rua>RuaR</rua>
+    <numero>123123</numero>
+    <cidade>Cidade C</cidade>
+    <estado>Estado E</estado>
+    <pais>Pais P</pais>
+  </ticket>
+  <ticket codigo="3">
+    <parquimetro>55555</parquimetro>
+    <valor>0.75</valor>
+    <emissao>2015-11-28T01:47:19.835</emissao>
+    <validade>2015-11-28T01:47:19.835</validade>
+    <rua>RuaR</rua>
+    <numero>123123</numero>
+    <cidade>Cidade C</cidade>
+    <estado>Estado E</estado>
+    <pais>Pais P</pais>
+  </ticket>
+  <ticket codigo="1">
+    <parquimetro>55555</parquimetro>
+    <valor>1.25</valor>
+    <emissao>2015-11-28T01:52:27.481</emissao>
+    <validade>2015-11-28T01:52:27.481</validade>
+    <rua>RuaR</rua>
+    <numero>123123</numero>
+    <cidade>Cidade C</cidade>
+    <estado>Estado E</estado>
+    <pais>Pais P</pais>
+  </ticket>
+  <ticket codigo="1">
+    <parquimetro>55555</parquimetro>
+    <valor>0.75</valor>
+    <emissao>2015-11-28T01:55:35.302</emissao>
+    <validade>2015-11-28T01:55:35.302</validade>
+    <rua>RuaR</rua>
+    <numero>123123</numero>
+    <cidade>Cidade C</cidade>
+    <estado>Estado E</estado>
+    <pais>Pais P</pais>
+  </ticket>
+  <ticket codigo="1">
+    <parquimetro>55555</parquimetro>
+    <valor>0.75</valor>
+    <emissao>2015-11-28T01:56:45.570</emissao>
+    <validade>2015-11-28T01:56:45.570</validade>
+    <rua>RuaR</rua>
+    <numero>123123</numero>
+    <cidade>Cidade C</cidade>
+    <estado>Estado E</estado>
+    <pais>Pais P</pais>
+  </ticket>
+  <ticket codigo="1">
+    <parquimetro>55555</parquimetro>
+    <valor>1.25</valor>
+    <emissao>2015-11-28T01:57:25.176</emissao>
+    <validade>2015-11-28T01:57:25.176</validade>
+    <rua>RuaR</rua>
+    <numero>123123</numero>
+    <cidade>Cidade C</cidade>
+    <estado>Estado E</estado>
+    <pais>Pais P</pais>
+  </ticket>
+  <ticket codigo="1">
+    <parquimetro>55555</parquimetro>
+    <valor>0.75</valor>
+    <emissao>2015-11-28T01:58:12.495</emissao>
+    <validade>2015-11-28T02:28:12.495</validade>
+    <rua>RuaR</rua>
+    <numero>123123</numero>
+    <cidade>Cidade C</cidade>
+    <estado>Estado E</estado>
+    <pais>Pais P</pais>
+  </ticket>
+  <ticket codigo="2">
+    <parquimetro>55555</parquimetro>
+    <valor>0.75</valor>
+    <emissao>2015-11-28T01:58:29.660</emissao>
+    <validade>2015-11-28T02:28:29.660</validade>
+    <rua>RuaR</rua>
+    <numero>123123</numero>
+    <cidade>Cidade C</cidade>
+    <estado>Estado E</estado>
+    <pais>Pais P</pais>
+  </ticket>
+  <ticket codigo="1">
+    <parquimetro>55555</parquimetro>
+    <valor>0.75</valor>
+    <emissao>2015-11-28T02:02:13.683</emissao>
+    <validade>2015-11-28T02:32:13.683</validade>
+    <rua>RuaR</rua>
+    <numero>123123</numero>
+    <cidade>Cidade C</cidade>
+    <estado>Estado E</estado>
+    <pais>Pais P</pais>
+  </ticket>
+  <ticket codigo="1">
+    <parquimetro>55555</parquimetro>
+    <valor>0.75</valor>
+    <emissao>2015-11-28T02:03:25.952</emissao>
+    <validade>2015-11-28T02:33:25.952</validade>
+    <rua>RuaR</rua>
+    <numero>123123</numero>
+    <cidade>Cidade C</cidade>
+    <estado>Estado E</estado>
+    <pais>Pais P</pais>
+  </ticket>
+  <ticket codigo="1">
+    <parquimetro>55555</parquimetro>
+    <valor>0.75</valor>
+    <emissao>2015-11-28T02:05:03.844</emissao>
+    <validade>2015-11-28T02:35:03.844</validade>
+    <rua>RuaR</rua>
+    <numero>123123</numero>
+    <cidade>Cidade C</cidade>
+    <estado>Estado E</estado>
+    <pais>Pais P</pais>
+  </ticket>
+  <ticket codigo="1">
+    <parquimetro>55555</parquimetro>
+    <valor>0.75</valor>
+    <emissao>2015-11-28T02:07:52.121</emissao>
+    <validade>2015-11-28T02:37:52.121</validade>
+    <rua>RuaR</rua>
+    <numero>123123</numero>
+    <cidade>Cidade C</cidade>
+    <estado>Estado E</estado>
+    <pais>Pais P</pais>
+  </ticket>
+  <ticket codigo="1">
+    <parquimetro>55555</parquimetro>
+    <valor>0.75</valor>
+    <emissao>2015-11-28T15:06:29.298</emissao>
+    <validade>2015-11-28T15:36:29.298</validade>
+    <rua>RuaR</rua>
+    <numero>123123</numero>
+    <cidade>Cidade C</cidade>
+    <estado>Estado E</estado>
+    <pais>Pais P</pais>
+  </ticket>
+  <ticket codigo="1">
+    <parquimetro>55555</parquimetro>
+    <valor>0.75</valor>
+    <emissao>2015-11-28T15:08:01.777</emissao>
+    <validade>2015-11-28T15:38:01.778</validade>
+    <rua>RuaR</rua>
+    <numero>123123</numero>
+    <cidade>Cidade C</cidade>
+    <estado>Estado E</estado>
+    <pais>Pais P</pais>
+  </ticket>
+  <ticket codigo="1">
+    <parquimetro>55555</parquimetro>
+    <valor>0.75</valor>
+    <emissao>2015-11-28T15:08:33.263</emissao>
+    <validade>2015-11-28T15:38:33.264</validade>
+    <rua>RuaR</rua>
+    <numero>123123</numero>
+    <cidade>Cidade C</cidade>
+    <estado>Estado E</estado>
+    <pais>Pais P</pais>
+  </ticket>
 </tickets>

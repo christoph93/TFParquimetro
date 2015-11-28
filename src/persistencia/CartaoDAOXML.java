@@ -104,9 +104,18 @@ public class CartaoDAOXML implements CartaoDAO {
     public void setSaldo(String codigoCartao, String valor) {
         for (Element e : listaCartoes) {
             if (codigoCartao.equals(e.getAttribute("codigo").getValue())) {
-                e.getChild("saldo").setText(String.valueOf(valor));                
+                e.getChild("saldo").setText(String.valueOf(valor));
+                XMLOutputter xmlOutput = new XMLOutputter();
+
+                xmlOutput.setFormat(Format.getPrettyFormat());
+
+                try {
+                    xmlOutput.output(document, new FileWriter("cartoes.xml"));
+                } catch (IOException ex) {
+                    Logger.getLogger(TicketDAOXML.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
-        }        
+        }
     }
 
     @Override
@@ -114,7 +123,7 @@ public class CartaoDAOXML implements CartaoDAO {
         List<Cartao> cartoes = new ArrayList<>();
 
         for (Element e : listaCartoes) {
-            
+
             Cartao c = new Cartao(
                     e.getAttribute("codigo").getValue(),
                     new BigDecimal(e.getChild("saldo").getValue()),

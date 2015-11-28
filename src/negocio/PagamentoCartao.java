@@ -31,12 +31,16 @@ public class PagamentoCartao implements Pagamento {
             valorPagamento = valorTicket;
             return true;
         } else if (cart.getTipo().equalsIgnoreCase("prepago")){
-            if (cart.getSaldo().compareTo(valorTicket) >= 0){
+            if(cart.getSaldo().compareTo(valorTicket) >= 0){
                 valorPagamento = valorTicket;
-                daoC.setSaldo(cart.getCodigo(), cart.getSaldo().subtract(valorPagamento).toPlainString());
+                
+                cart.setSaldo(cart.getSaldo().subtract(valorTicket));
+                daoC.setSaldo(cart.getCodigo(), cart.getSaldo().subtract(valorTicket).toString());
                 return true;
-            }           
-            return false; 
+                
+            }else{
+                return false;
+            }
         }
         return false;
     }

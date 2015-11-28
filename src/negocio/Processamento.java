@@ -8,6 +8,7 @@ package negocio;
 import java.math.BigDecimal;
 import java.time.*;
 import java.util.ArrayList;
+import persistencia.CartaoDAOXML;
 
 
 /**
@@ -26,6 +27,7 @@ public class Processamento {
     private int numTick;
     private Duration incremento;
     private ArrayList<Moeda> moedas;
+    private CartaoDAOXML daoC;
 
     public Processamento(Parquimetro parq, int numerTick) {
         tempo = parq.getTempoMin();
@@ -36,6 +38,8 @@ public class Processamento {
         numTick = numerTick;
         incremento = parquim.getIncremento();
         valorTicket = calculaValorPorTempo();
+        daoC = new CartaoDAOXML();
+        moedas = new ArrayList<>();
     }
 
     public BigDecimal calculaValorPorTempo() {
@@ -56,6 +60,10 @@ public class Processamento {
                 aux % 60);
         String[] a = {t, valorTicket.toString()};
         return a;
+    }
+    
+    public boolean existePagamento(){
+        return aux != 0;
     }
 
     public String[] getMinimos() {
@@ -86,7 +94,6 @@ public class Processamento {
 
     public boolean insereMoeada(BigDecimal vMoeda) {
         if (aux == 0) {
-            moedas = new ArrayList<>();
             pag = new PagamentoMoeda(parquim);
         }
         aux = 1;
@@ -102,11 +109,11 @@ public class Processamento {
     }
 
     public String getMoedasAsString(){
-        String stringMoedas = "";
+        String stringMoedas = "  ";
         for(Moeda m : moedas){
-            stringMoedas += (" " + m.valor());
+            stringMoedas += (m.valor() + ", ");
         }
-        return stringMoedas;
+        return stringMoedas.substring(0, stringMoedas.length()-2);
     }
     
     //paga com moedas
@@ -136,14 +143,15 @@ public class Processamento {
             aux = 2;
             boolean aceitou = pag.recebe();
             if(aceitou){
-                return "pagamento com cartão aceito";
+                Emissao em = new Emissao(tempo, numTick, valorTicket , parquim);
+                return "pagamento com cartão aceito. \nCartão " + daoC.getCartao().getCodigo() + "\nNovo saldo: " + daoC.getCartao().getSaldo().toString() +
+                        "\n" + em.imprimeTicket();
             } else{
                 return "saldo do cartao insuficiente";
             }
         } else if (aux == 2) {
             return "está pagando com moedas. cancele";
         }
-
         return "pagamento não aceito";
     }
 

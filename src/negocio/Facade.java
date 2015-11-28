@@ -30,6 +30,7 @@ public class Facade {
     public String cancela() {
         String moedas = proc.getMoedasAsString();
         proc = new Processamento(parquim, numercaoTicket);
+
         return "Retornando moedas: " + moedas;
     }
 
@@ -61,7 +62,7 @@ public class Facade {
     }
 
     public String passaCartao() {
-        System.out.println(proc.paga(daoC.getCartao()));
+        //System.out.println(proc.paga(daoC.getCartao()));
         return proc.paga(daoC.getCartao());
     }
 
