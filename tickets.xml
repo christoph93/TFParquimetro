@@ -231,4 +231,37 @@
     <estado>Estado E</estado>
     <pais>Pais P</pais>
   </ticket>
+  <ticket codigo="55555">
+    <parquimetro>55555</parquimetro>
+    <valor>30</valor>
+    <emissao>2015-11-30T20:14:45.712</emissao>
+    <validade>2015-11-30T20:44:45.713</validade>
+    <rua>Rua</rua>
+    <numero>20</numero>
+    <cidade>Porto Alegre</cidade>
+    <estado>RS</estado>
+    <pais>Brasil</pais>
+  </ticket>
+  <ticket codigo="55555">
+    <parquimetro>55555</parquimetro>
+    <valor>30</valor>
+    <emissao>2015-11-30T20:15:07.908</emissao>
+    <validade>2015-11-30T20:45:07.908</validade>
+    <rua>Rua</rua>
+    <numero>20</numero>
+    <cidade>Porto Alegre</cidade>
+    <estado>RS</estado>
+    <pais>Brasil</pais>
+  </ticket>
+  <ticket codigo="55555">
+    <parquimetro>55555</parquimetro>
+    <valor>30</valor>
+    <emissao>2015-11-30T20:15:25.573</emissao>
+    <validade>2015-11-30T20:45:25.573</validade>
+    <rua>Rua</rua>
+    <numero>20</numero>
+    <cidade>Porto Alegre</cidade>
+    <estado>RS</estado>
+    <pais>Brasil</pais>
+  </ticket>
 </tickets>

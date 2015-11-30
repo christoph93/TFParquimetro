@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import negocio.Cartao;
 import negocio.Endereco;
 import negocio.Moeda;
 import negocio.Parquimetro;
@@ -30,6 +31,7 @@ public class ProcessamentoTeste {
     private static Parquimetro p1;
     private static Endereco e;
     private static ArrayList<Moeda> m = new ArrayList<>();
+    private static Cartao ca;
 
     public ProcessamentoTeste() {
     }
@@ -41,6 +43,7 @@ public class ProcessamentoTeste {
         e = new Endereco("Rua", 20, "Porto Alegre", "RS", "Brasil");
         p1 = new Parquimetro(e, 55555, LocalTime.parse("09:00:00"), LocalTime.parse("19:00:00"), Duration.parse("PT30M"), Duration.parse("PT2H"), Duration.parse("PT10M"), 10.0, m);
         p = new Processamento(p1, 55555);
+        ca = new Cartao("123456789", BigDecimal.valueOf(200.0), "Residente");
     }
 
     @Before
@@ -50,6 +53,7 @@ public class ProcessamentoTeste {
         e = new Endereco("Rua", 20, "Porto Alegre", "RS", "Brasil");
         p1 = new Parquimetro(e, 55555, LocalTime.parse("09:00:00"), LocalTime.parse("19:00:00"), Duration.parse("PT30M"), Duration.parse("PT2H"), Duration.parse("PT10M"), 10.0, m);
         p = new Processamento(p1, 55555);
+        ca = new Cartao("123456789", BigDecimal.valueOf(200.0), "Residente");
     }
 
     @Test
@@ -91,5 +95,27 @@ public class ProcessamentoTeste {
     @Test
     public void getMoedasAsString() {
         assertEquals("", p.getMoedasAsString());
+    }
+
+    @Test
+    public void paga() {
+        assertEquals(null, p.paga());
+    }
+
+    @Test
+    public void getValorPagamento() {
+        assertEquals(BigDecimal.valueOf(30), p.getValorPagamento());
+    }
+
+    @Test
+    public void pagaCartao() {
+        assertEquals("pagamento com cartão aceito. \n"
+                + "Cartão 123456789\n"
+                + "Novo saldo: 95.00\n"
+                + "Parquimetro: 55555\n"
+                + "Endereço: Rua, 20 - Porto Alegre, RS, Brasil\n"
+                + "Ticket:   55555\n"
+                + "Emissão:  30/11/15 20:15\n"
+                + "Validade: 30/11/15 20:45", p.paga(ca));
     }
 }

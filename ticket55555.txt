@@ -1,0 +1,5 @@
+Parquimetro: 55555
+Endereço: Rua, 20 - Porto Alegre, RS, Brasil
+Ticket:   55555
+Emissão:  30/11/15 20:15
+Validade: 30/11/15 20:45
