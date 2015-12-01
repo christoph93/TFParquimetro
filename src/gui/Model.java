@@ -6,8 +6,11 @@
 package gui;
 
 import java.math.BigDecimal;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import negocio.Facade;
 import negocio.Parquimetro;
+import persistencia.CartaoDAOException;
 
 public class Model {        
     
@@ -68,7 +71,12 @@ public class Model {
     }
     
     public String passaCartao(){
-        return f.passaCartao();
+        try {
+            return f.passaCartao();
+        } catch (CartaoDAOException ex) {
+            Logger.getLogger(Model.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
     
     public Facade getFacade() {

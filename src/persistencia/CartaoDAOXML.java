@@ -34,7 +34,7 @@ public class CartaoDAOXML implements CartaoDAO {
     private Element root;
     private List<Element> listaCartoes;
 
-    public CartaoDAOXML() {
+    public CartaoDAOXML() throws CartaoDAOException{
 
         try {
             inputFile = new File("cartoes.xml");
@@ -48,6 +48,7 @@ public class CartaoDAOXML implements CartaoDAO {
             listaCartoes = root.getChildren();
 
         } catch (JDOMException | IOException e) {
+            throw new CartaoDAOException();
         }
 
     }

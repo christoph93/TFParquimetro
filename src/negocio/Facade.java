@@ -6,8 +6,9 @@
 package negocio;
 
 import java.math.BigDecimal;
-import java.sql.Time;
-import java.time.LocalTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import persistencia.CartaoDAOException;
 import persistencia.CartaoDAOXML;
 
 /**
@@ -21,10 +22,14 @@ public class Facade {
     private Parquimetro parquim;
     private int numercaoTicket = 1;
 
-    public Facade(Parquimetro parq) {
-        daoC = new CartaoDAOXML();
-        parquim = parq;
-        proc = new Processamento(parquim, numercaoTicket);
+    public Facade(Parquimetro parq){
+        try {
+            daoC = new CartaoDAOXML();
+            parquim = parq;
+            proc = new Processamento(parquim, numercaoTicket);
+        } catch (CartaoDAOException ex) {
+            Logger.getLogger(Facade.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public String cancela() {
@@ -65,8 +70,7 @@ public class Facade {
         proc.geraLog();
     }
     
-    public String passaCartao() {
-        //System.out.println(proc.paga(daoC.getCartao()));
+    public String passaCartao() throws CartaoDAOException {
         return proc.paga(daoC.getCartao());
     }
 

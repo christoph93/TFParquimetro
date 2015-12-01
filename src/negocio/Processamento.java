@@ -8,6 +8,9 @@ package negocio;
 import java.math.BigDecimal;
 import java.time.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import persistencia.CartaoDAOException;
 import persistencia.CartaoDAOXML;
 
 
@@ -30,16 +33,20 @@ public class Processamento {
     private CartaoDAOXML daoC;
 
     public Processamento(Parquimetro parq, int numerTick) {
-        tempo = parq.getTempoMin();
-        parquim = parq;
-        tempoMax = parquim.getTempoMax();
-        tempoMin = parquim.getTempoMin();
-        aux = 0;
-        numTick = numerTick;
-        incremento = parquim.getIncremento();
-        valorTicket = calculaValorPorTempo();
-        daoC = new CartaoDAOXML();
-        moedas = new ArrayList<>();
+        try {
+            tempo = parq.getTempoMin();
+            parquim = parq;
+            tempoMax = parquim.getTempoMax();
+            tempoMin = parquim.getTempoMin();
+            aux = 0;
+            numTick = numerTick;
+            incremento = parquim.getIncremento();
+            valorTicket = calculaValorPorTempo();
+            daoC = new CartaoDAOXML();
+            moedas = new ArrayList<>();
+        } catch (CartaoDAOException ex) {
+            Logger.getLogger(Processamento.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public BigDecimal calculaValorPorTempo() {

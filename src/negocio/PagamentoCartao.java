@@ -6,6 +6,9 @@
 package negocio;
 
 import java.math.BigDecimal;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import persistencia.CartaoDAOException;
 import persistencia.CartaoDAOXML;
 
 /**
@@ -20,9 +23,13 @@ public class PagamentoCartao implements Pagamento {
     private CartaoDAOXML daoC;
     
     public PagamentoCartao(Cartao ca, BigDecimal valor) {
-        cart = ca;
-        valorTicket = valor;
-         daoC = new CartaoDAOXML();
+        try {
+            cart = ca;
+            valorTicket = valor;
+            daoC = new CartaoDAOXML();
+        } catch (CartaoDAOException ex) {
+            Logger.getLogger(PagamentoCartao.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
