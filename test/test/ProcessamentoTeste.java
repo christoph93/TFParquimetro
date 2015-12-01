@@ -23,7 +23,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author lcaltab
+ * @authors Christoph Califice, Lucas Caltabiano
  */
 public class ProcessamentoTeste {
 

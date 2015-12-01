@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package gui;
 
 import java.math.BigDecimal;
@@ -11,6 +7,11 @@ import java.util.logging.Logger;
 import negocio.Facade;
 import negocio.Parquimetro;
 import persistencia.CartaoDAOException;
+
+/**
+ *
+ * @authors Christoph Califice, Lucas Caltabiano
+ */
 
 public class Model {        
     
@@ -42,13 +43,11 @@ public class Model {
     }
     
     public String[] incrementaTempo() {
-        //System.out.println(f.incrementaTempo());
-       return f.incrementaTempo();
+        return f.incrementaTempo();
     }
     
     public String[] decrementaTempo() {
-        //System.out.println(f.decrementaTempo());
-       return f.decrementaTempo();
+        return f.decrementaTempo();
     }
     
     public String getTempo(){

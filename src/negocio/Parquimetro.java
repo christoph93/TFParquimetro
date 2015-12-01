@@ -1,18 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package negocio;
 
 import java.time.*;
 import java.util.ArrayList;
-
 /**
  *
- * @author ccalifi
- */
-public class Parquimetro {
+ * @authors Christoph Califice, Lucas Caltabiano
+ */public class Parquimetro {
 
     private int codigo;
     private ArrayList<Moeda> moedas;

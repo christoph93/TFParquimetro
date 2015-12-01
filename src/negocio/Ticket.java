@@ -1,14 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package negocio;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
+
+/**
+ *
+ * @authors Christoph Califice, Lucas Caltabiano
+ */
 
 public class Ticket {
 
@@ -52,11 +52,6 @@ public class Ticket {
         return validade;
     }
 
-    // Número de identificação do parquímetro (5 dígitos de tamanho fixo);
-// Endereço do parquímetro;
-// Número serial do tíquete emitido (5 dígitos de tamanho fixo);
-// Data e hora de emissão do tíquete;
-// Data e hora de validade do tíquete.
     
     @Override
     public String toString() {

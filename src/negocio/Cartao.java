@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package negocio;
 
 /**
  *
- * @author ccalifi
+ * @authors Christoph Califice, Lucas Caltabiano
  */
 
 import java.math.BigDecimal;
@@ -29,15 +24,6 @@ public class Cartao {
         tipo = t;
     }
     
-//    private String geraCodigo(){
-//        String cod = "";
-//        
-//        for (int i = 0; i <=3; i++){
-//            cod += UUID.randomUUID().toString().replaceAll("-", "");
-//        }        
-//        return cod;
-//    }
-
     public String getCodigo() {
         return codigo;
     }
